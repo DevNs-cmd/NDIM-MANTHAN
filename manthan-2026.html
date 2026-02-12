@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANTHAN-26 | NDIM Official Fest Portal</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #ff0000;
+            --dark-bg: #0a0a0a;
+            --card-bg: #111111;
+            --border: #222;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .navbar-brand { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+
+        /* --- Navbar --- */
+        .navbar { background: rgba(0, 0, 0, 0.95); border-bottom: 1px solid var(--border); padding: 15px 0; }
+        .navbar-brand { color: var(--primary-red) !important; font-weight: 700; letter-spacing: 2px; }
+        .nav-link { color: #fff !important; text-transform: uppercase; font-size: 0.9rem; margin: 0 10px; }
+        .nav-link:hover { color: var(--primary-red) !important; }
+
+        /* --- Hero Section --- */
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        .main-title { font-size: clamp(3.5rem, 12vw, 8rem); color: var(--primary-red); font-weight: 700; line-height: 1; text-shadow: 0 0 30px rgba(255, 0, 0, 0.5); }
+        .hero-subtext { letter-spacing: 3px; color: #ccc; font-size: 0.9rem; text-transform: uppercase; }
+        
+        .timer-box { background: rgba(255, 255, 255, 0.05); border: 1px solid #333; padding: 15px; border-radius: 8px; min-width: 90px; }
+        .timer-box span { display: block; font-size: 2rem; color: var(--primary-red); font-weight: 700; }
+        .timer-box label { font-size: 0.7rem; text-transform: uppercase; color: #888; }
+
+        /* --- Section Styling --- */
+        .section-padding { padding: 100px 0; }
+        .section-title { font-size: 3.5rem; text-align: center; margin-bottom: 60px; color: var(--primary-red); }
+
+        /* --- Custom Cards --- */
+        .custom-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 15px; padding: 25px; transition: 0.3s; height: 100%;
+        }
+        .custom-card:hover { border-color: var(--primary-red); transform: translateY(-8px); }
+        .m-chip { background: #1a1a1a; padding: 8px; border-radius: 8px; border: 1px solid #333; font-size: 0.75rem; margin-bottom: 5px; }
+        .m-chip b { color: var(--primary-red); display: block; }
+
+        /* --- Gallery --- */
+        .gallery-img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; transition: 0.3s; cursor: pointer; }
+        .gallery-img:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+        /* --- Authority Styling --- */
+        .coord-circle { 
+            width: 100px; height: 100px; border-radius: 50%; display: flex; 
+            align-items: center; justify-content: center; margin: 0 auto 20px; 
+            font-size: 1.8rem; font-weight: 700; border: 2px solid #333; 
+        }
+
+        /* --- CUSTOM DETAILS WINDOW (MODAL) --- */
+        .modal-content { background: #0e0e0e; color: #e0e0e0; border: 1px solid #333; border-radius: 12px; }
+        .modal-header { border-bottom: none; padding-bottom: 0; }
+        .event-type { color: #888; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+        .detail-icon { color: var(--primary-red); width: 20px; font-size: 1.1rem; }
+        .rule-item { color: #ccc; font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: flex-start; }
+        .rule-item i { color: var(--primary-red); font-size: 0.6rem; margin-top: 6px; margin-right: 12px; }
+        
+        .modal-member-img { 
+            width: 60px; height: 60px; 
+            border-radius: 50%; border: 1px solid #444; 
+            object-fit: cover; margin-bottom: 8px; 
+        }
+        .core-team-label { color: #888; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 20px; }
+
+        /* --- Footer --- */
+        footer { background: #000; padding: 80px 0 30px; border-top: 1px solid #222; }
+        .dev-img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--primary-red); object-fit: cover; margin-bottom: 15px; }
+        .dev-name { color: var(--primary-red); font-weight: 700; margin-bottom: 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">MANTHAN-26</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link border border-danger rounded px-2" href="#register">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container" data-aos="zoom-out">
+            <p class="hero-subtext">NDIM - GGSIP UNIVERSITY PRESENTS</p>
+            <h1 class="main-title">MANTHAN-26</h1>
+            <p class="h4 text-light fw-light">Annual Cultural & Technical Fest</p>
+            <!-- <div class="d-flex justify-content-center gap-3 my-5">
+                <div class="timer-box"><span id="days">30</span><label>Days</label></div>
+                <div class="timer-box"><span id="hours">17</span><label>Hours</label></div>
+                <div class="timer-box"><span id="mins">00</span><label>Mins</label></div>
+                <div class="timer-box"><span id="secs">31</span><label>Secs</label></div>
+            </div> -->
+            <!-- <a href="#register" class="btn btn-danger btn-lg px-5 py-3 fw-bold rounded-1 mt-3">REGISTER NOW</a> -->
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">About <span class="text-white">MANTHAN-26</span></h2>
+            <p class="lead text-secondary mx-auto mb-5" style="max-width: 850px;">
+                MANTHAN-26 is the flagship annual cultural and technical fest of New Delhi Institute of Management (NDIM), affiliated with Guru Gobind Singh Indraprastha University.
+            </p>
+            <div class="row g-4" data-aos="fade-up">
+                <div class="col-md-3"><div class="custom-card"><i class="fa fa-calendar-alt text-danger fs-1 mb-3"></i><h5>15-16 March 2026</h5><p class="small text-secondary">DATE</p></div></div>
+                <div class="col-md-3"><div class="custom-card"><i class="fa fa-map-marker-alt text-danger fs-1 mb-3"></i><h5>NDIM Campus</h5><p class="small text-secondary">VENUE</p></div></div>
+                <div class="col-md-3"><div class="custom-card"><i class="fa fa-users text-danger fs-1 mb-3"></i><h5>5,000+</h5><p class="small text-secondary">EXPECTED FOOTFALL</p></div></div>
+                <div class="col-md-3"><div class="custom-card"><i class="fa fa-trophy text-danger fs-1 mb-3"></i><h5>15+ Events</h5><p class="small text-secondary">TOTAL EVENTS</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="section-padding bg-black">
+        <div class="container">
+            <h2 class="section-title">Clubs & <span class="text-white">Events</span></h2>
+            <div class="row g-4" id="eventGrid">
+                </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">Photo <span class="text-white">Gallery</span></h2>
+            <div class="row g-3">
+                <div class="col-md-4 col-6"><img src="https://images.unsplash.com/photo-1514525253361-bee8718a300a?w=500" class="gallery-img"></div>
+                <div class="col-md-4 col-6"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500" class="gallery-img"></div>
+                <div class="col-md-4 col-6"><img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" class="gallery-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="authorities" class="section-padding bg-black">
+        <div class="container text-center">
+            <h2 class="section-title mb-5">Fest <span class="text-white">Coordinators</span></h2>
+            <div class="row g-4 justify-content-center mb-5">
+                <div class="col-md-3"><div class="custom-card"><div class="coord-circle" style="background: #2b1d0e; color: #d4a017;">DA</div><h5>Dr. Anand Sharma</h5><p class="text-danger small">FEST DIRECTOR</p></div></div>
+                <div class="col-md-3"><div class="custom-card"><div class="coord-circle" style="background: #1d0e2b; color: #a017d4;">PN</div><h5>Prof. Nidhi Kapoor</h5><p class="text-danger small">CHIEF COORDINATOR</p></div></div>
+            </div>
+
+            <h2 class="section-title mt-5 mb-5">College <span class="text-white">Authorities</span></h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4"><div class="custom-card"><div class="coord-circle" style="background: #2b0e0e; color: #ff4d4d;">DR</div><h5>Dr. R.K. Mittal</h5><p class="text-warning small">DIRECTOR</p></div></div>
+                <div class="col-md-4"><div class="custom-card"><div class="coord-circle" style="background: #0e1d2b; color: #4da6ff;">MV</div><h5>Mr. Vikas Gupta</h5><p class="text-warning small">CEO</p></div></div>
+                <div class="col-md-4"><div class="custom-card"><div class="coord-circle" style="background: #0e2b1d; color: #17d4a0;">MS</div><h5>Mrs. Sunita Agarwal</h5><p class="text-warning small">MANAGING DIRECTOR</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <h2 class="text-danger mb-5">MANTHAN-2026</h2>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-3 col-6"><img src="https://i.pravatar.cc/150?u=prem" class="dev-img"><p class="dev-name">Prem Aggarwal</p><small class="text-secondary">BCA Student</small></div>
+                <div class="col-md-3 col-6"><img src="https://i.pravatar.cc/150?u=dev" class="dev-img"><p class="dev-name">Dev Nath Suman</p><small class="text-secondary">BCA Student</small></div>
+            </div>
+            <p class="small text-secondary mt-5">© 2026 NDIM - Manthan Organizing Committee</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="detailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <span class="event-type" id="modSoc">LITERARY SOCIETY</span>
+                        <h2 class="modal-title text-white mt-1" id="modTitle">The Great Debate</h2>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body px-4 py-3">
+                    <p class="text-secondary small mb-4">A prestigious inter-college competition where eloquence meets intellect. Teams of two argue for and against contemporary topics.</p>
+                    
+                    <div class="row g-4 mb-4">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-clock detail-icon me-3"></i>
+                                <div><small class="text-secondary d-block">DATE</small><span class="small">16 March 2026</span></div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-users detail-icon me-3"></i>
+                                <div><small class="text-secondary d-block">ELIGIBILITY</small><span class="small">All college students</span></div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-calendar-check detail-icon me-3"></i>
+                                <div><small class="text-secondary d-block">DEADLINE</small><span class="small">12 March 2026</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-map-marker-alt detail-icon me-3"></i>
+                                <div><small class="text-secondary d-block">VENUE</small><span class="small">Seminar Hall</span></div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fa fa-trophy detail-icon me-3"></i>
+                                <div><small class="text-secondary d-block">PRIZES</small><span class="small">₹12,000 (1st) | ₹8,000 (2nd)</span></div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-phone detail-icon me-3"></i>
+                                <div><small class="text-secondary d-block">CONTACT</small><span class="small">Ishaan Khanna - 9876543215</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="text-secondary small text-uppercase mb-3" style="letter-spacing: 1px;">Rules & Regulations</h6>
+                    <div class="rule-item"><i class="fa fa-play"></i><span>Team of 2</span></div>
+                    <div class="rule-item"><i class="fa fa-play"></i><span>5 min per speaker</span></div>
+                    <div class="rule-item"><i class="fa fa-play"></i><span>Rebuttal round included</span></div>
+                    <div class="rule-item"><i class="fa fa-play"></i><span>English/Hindi</span></div>
+
+                    <div class="mt-5">
+                        <h6 class="core-team-label text-uppercase" id="modCoreTitle">CORE TEAM - LITERARY SOCIETY</h6>
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-3 text-center" id="modTeamGrid">
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4">
+                    <button class="btn btn-danger w-100 py-2 fw-bold rounded-1"><i class="fa fa-edit me-2"></i> REGISTER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+
+        const grid = document.getElementById('eventGrid');
+        const clubs = [
+            { name: "IT Club", icon: "fa-laptop", event: "Code Storm", soc: "TECH SOCIETY" },
+            { name: "Cultural Soc.", icon: "fa-masks-theater", event: "Nukkad Natak", soc: "DRAMATICS SOCIETY" },
+            { name: "Dance Club", icon: "fa-person-rays", event: "Dance Battle", soc: "DANCE SOCIETY" },
+            { name: "Music Society", icon: "fa-music", event: "Solo Vocals", soc: "MUSIC SOCIETY" }
+        ];
+
+        // Generate 20 Event Cards
+        for (let i = 1; i <= 20; i++) {
+            const club = clubs[i % 4];
+            grid.innerHTML += `
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="custom-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa ${club.icon} text-danger fs-3 me-3"></i>
+                            <h4 class="mb-0">${club.name}</h4>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6"><div class="m-chip"><b>AK</b> Aditya K.</div></div>
+                            <div class="col-6"><div class="m-chip"><b>SG</b> Sneha G.</div></div>
+                        </div>
+                        <div class="bg-dark p-3 rounded-3">
+                            <h6>${club.event} v${i}</h6>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails('${club.event} v${i}', '${club.soc}')">VIEW DETAILS</button>
+                                <button class="btn btn-sm btn-danger w-100">REGISTER</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Open Detail Modal with 10 Core Team Members
+        function openDetails(title, soc) {
+            document.getElementById('modTitle').innerText = title;
+            document.getElementById('modSoc').innerText = soc;
+            document.getElementById('modCoreTitle').innerText = "CORE TEAM - " + soc;
+            const teamGrid = document.getElementById('modTeamGrid');
+            teamGrid.innerHTML = '';
+            
+            // Loop for 10 core members
+            for(let k=1; k<=10; k++) {
+                teamGrid.innerHTML += `
+                    <div class="col">
+                        <img src="https://i.pravatar.cc/100?u=${title}${k}" class="modal-member-img" alt="Member">
+                        <p class="mb-0 fw-bold" style="font-size:0.65rem;">MEMBER ${k}</p>
+                    </div>
+                `;
+            }
+            new bootstrap.Modal(document.getElementById('detailModal')).show();
+        }
+
+        // Countdown Timer
+        const target = new Date("March 15, 2026 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const d = target - now;
+            if (d > 0) {
+                document.getElementById('days').innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('mins').innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('secs').innerText = Math.floor((d % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
