@@ -92,6 +92,142 @@
         footer { background: #000; padding: 80px 0 30px; border-top: 1px solid #222; }
         .dev-img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--primary-red); object-fit: cover; margin-bottom: 15px; }
         .dev-name { color: var(--primary-red); font-weight: 700; margin-bottom: 0; }
+
+        /* =====================================================
+           RESPONSIVE STYLES - Mobile First Approach
+           ===================================================== */
+        
+        /* Extra Small Devices (phones less than 576px) */
+        @media (max-width: 575.98px) {
+            /* Navbar */
+            .navbar { padding: 10px 0; }
+            .navbar-brand { font-size: 1.2rem; }
+            .nav-link { padding: 8px 12px !important; margin: 0 5px; font-size: 0.8rem; }
+            .navbar-nav { padding-top: 15px; }
+            .navbar-toggler { padding: 5px 8px; }
+            
+            /* Hero Section */
+            #home { padding: 80px 15px; min-height: 100vh; }
+            .hero-subtext { font-size: 0.7rem; letter-spacing: 2px; }
+            .main-title { font-size: clamp(2.5rem, 15vw, 4rem); }
+            
+            /* Sections */
+            .section-padding { padding: 60px 0; }
+            .section-title { font-size: clamp(1.8rem, 8vw, 2.5rem); margin-bottom: 40px; }
+            
+            /* About Section */
+            .about .lead { font-size: 0.95rem; }
+            .custom-card { padding: 20px 15px; }
+            .custom-card h5 { font-size: 1rem; }
+            .custom-card .fs-1 { font-size: 2rem !important; }
+            .custom-card .small { font-size: 0.75rem; }
+            
+            /* Events Section */
+            #eventGrid .custom-card { margin-bottom: 15px; }
+            .m-chip { font-size: 0.65rem; padding: 6px; }
+            .m-chip b { font-size: 0.6rem; }
+            .bg-dark h6 { font-size: 0.9rem; }
+            .bg-dark .btn-sm { font-size: 0.7rem; padding: 4px 8px; }
+            
+            /* Gallery */
+            .gallery-img { height: 180px; }
+            
+            /* Authorities Section */
+            .coord-circle { 
+                width: 70px; height: 70px; 
+                font-size: 1.2rem; 
+                margin-bottom: 15px;
+            }
+            .coord-circle + h5 { font-size: 0.95rem; }
+            .coord-circle + h5 + .small { font-size: 0.7rem; }
+            
+            /* Modal */
+            .modal-dialog { margin: 10px; }
+            .modal-content { margin: 5px; }
+            .modal-body { padding: 15px; max-height: 70vh; overflow-y: auto; }
+            .modal-title { font-size: 1.3rem; }
+            .detail-icon { width: 15px; font-size: 0.9rem; }
+            .rule-item { font-size: 0.8rem; }
+            .modal-member-img { width: 50px; height: 50px; }
+            .modal-footer { padding: 10px; }
+            
+            /* Footer */
+            footer { padding: 50px 0 20px; }
+            footer h2 { font-size: 1.5rem; }
+            .dev-img { width: 70px; height: 70px; }
+            .dev-name { font-size: 0.9rem; }
+            footer .small { font-size: 0.7rem; }
+        }
+
+        /* Small Devices (phones 576px - 767px) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .main-title { font-size: clamp(3rem, 12vw, 5rem); }
+            .section-title { font-size: clamp(2rem, 6vw, 2.8rem); }
+            .coord-circle { width: 85px; height: 85px; font-size: 1.5rem; }
+            .modal-body { max-height: 65vh; overflow-y: auto; }
+        }
+
+        /* Medium Devices (tablets 768px - 991px) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .section-title { font-size: clamp(2.5rem, 5vw, 3rem); }
+            .coord-circle { width: 90px; height: 90px; }
+            .main-title { font-size: clamp(4rem, 10vw, 6rem); }
+            .modal-body { max-height: 60vh; overflow-y: auto; }
+        }
+
+        /* Large Devices (desktops 992px - 1199px) */
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .main-title { font-size: clamp(5rem, 10vw, 7rem); }
+        }
+
+        /* Extra Large Devices (desktops 1200px+) */
+        @media (min-width: 1200px) {
+            .container { max-width: 1140px; }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+            #home { min-height: auto; padding: 100px 20px 50px; }
+            .main-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+        }
+
+        /* High DPI / Retina displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .gallery-img { image-rendering: -webkit-optimize-contrast; }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-link, .btn, .gallery-img { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+            .custom-card:active { transform: scale(0.98); }
+            .btn:hover { transform: none; }
+        }
+
+        /* Print styles */
+        @media print {
+            .navbar, #home, .modal, footer { display: none; }
+            .section-padding { padding: 20px 0; }
+            body { background: white; color: black; }
+        }
+
+        /* Grid responsive adjustments */
+        @media (max-width: 767px) {
+            .row.g-4 > [class*="col-"] { margin-bottom: 15px; }
+        }
+
+        /* Smooth scrolling for iOS */
+        @supports (-webkit-overflow-scrolling: touch) {
+            html, body { -webkit-overflow-scrolling: touch; }
+        }
     </style>
 </head>
 <body>
@@ -260,72 +396,480 @@
     <script>
         AOS.init();
 
-      const grid = document.getElementById('eventGrid');
+        // ============================================
+        // MASTER DATA OBJECT - Edit placeholder values
+        // ============================================
+        const clubsData = [
+            {
+                clubName: "Cybernauts-IT Club",
+                society: "IT-CLUB",
+                icon: "fa-laptop",
+                eventTitle: "Hackathon",
+                description: "Join us for an exciting Hackathon where innovation meets creativity. Showcase your technical skills, problem-solving ability, and teamwork by building impactful solutions to real-world challenges within a limited time. Whether you're a beginner or an experienced coder, this is your chance to learn, collaborate, network with like-minded innovators, and compete for exciting cash prizes. Think bold, code smart, and bring your ideas to life.Organising hackathon ",
+                date: "17 March 2026",
+                venue: "NDIM",
+                eligibility: "College Students",
+                // deadline: "",
+                // prizes: "ADD_PRIZES",
+                contact: "8920307438 , 8076825690 ",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: [],
 
-const clubs = [
-    { name: "Cybernauts-IT Club", icon: "fa-laptop", event: "Code Storm", soc: "TECH SOCIETY" },
-    { name: "Prominent-Marketing Club", icon: "fa-masks-theater", event: "Nukkad Natak", soc: "DRAMATICS SOCIETY" },
-    { name: "NSS", icon: "fa-person-rays", event: "Dance Battle", soc: "DANCE SOCIETY" },
-    { name: "Tabiir", icon: "fa-music", event: "Solo Vocals", soc: "MUSIC SOCIETY" },
-    { name: "Kalakriti", icon: "fa-camera", event: "Photo Walk", soc: "PHOTO SOCIETY" },
-    { name: "Bulls n Bear", icon: "fa-book", event: "Debate", soc: "LITERARY SOCIETY" },
-    { name: "Sandarbh", icon: "fa-shirt", event: "Ramp Walk", soc: "FASHION SOCIETY" },
-    { name: "Gliterati", icon: "fa-briefcase", event: "Startup Pitch", soc: "E-CELL" },
-    { name: "Catalyst-HR Club", icon: "fa-gamepad", event: "BGMI Tournament", soc: "GAMING SOCIETY" },
-    { name: "Art Club", icon: "fa-palette", event: "Sketch Battle", soc: "ART SOCIETY" },
-    { name: "Quiz Club", icon: "fa-circle-question", event: "Quizathon", soc: "QUIZ SOCIETY" },
-    { name: "Sports Society", icon: "fa-futbol", event: "Mini Tournament", soc: "SPORTS SOCIETY" },
-    { name: "Environment Club", icon: "fa-leaf", event: "Green Drive", soc: "ECO SOCIETY" },
-    { name: "Robotics Club", icon: "fa-robot", event: "Robo Race", soc: "ROBOTICS SOCIETY" },
-    { name: "Social Service Club", icon: "fa-hand-holding-heart", event: "Charity Drive", soc: "NSS" }
-];
+                coreTeam: [
+                    { name: "Prem Aggarwal <br> President", image: "premnew.png" },
+                    { name: "Krrish Nalwa <br> Vice President", image: "krrish.png" },
+                    { name: "Ayushi Singh <br> Social Media Head", image: "Ayushi.png" },
+                    { name: "Dev Nath Suman <br> Tech Head", image: "Dev.png" },
+                    { name: "Gurleen Kaur <br> Event Head", image: "Gurleen.png" },
+                    { name: "Parv Arora <br> PR-Head", image: "Parv.png" },
+                    { name: "Tanvi Sharma <br> PR-Head", image: "Tanvi.png" },
+                    { name: "Pallavi <br> Marketing Head", image: "Pallavi.png" },
+                    { name: "Yukta Rathore <br> Documentation Head", image: "yukta.png" }
+                ]
+            },
+            {
+                clubName: "Prominent-Marketing Club",
+                society: "MARKETING CLUB",
+                icon: "fa-masks-theater",
+                eventTitle: "Nukkad Natak",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "NSS",
+                society: "NSS",
+                icon: "fa-person-rays",
+                eventTitle: "Dance Battle",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Tabiir",
+                society: "DRAMATIC SOCIETY",
+                icon: "fa-music",
+                eventTitle: "Solo Vocals",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Kalakriti",
+                society: "ART SOCIETY",
+                icon: "fa-camera",
+                eventTitle: "Photo Walk",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Bulls n Bear",
+                society: "LITERARY SOCIETY",
+                icon: "fa-book",
+                eventTitle: "Debate",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Sandarbh",
+                society: "FASHION SOCIETY",
+                icon: "fa-shirt",
+                eventTitle: "Ramp Walk",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Gliterati",
+                society: "E-CELL",
+                icon: "fa-briefcase",
+                eventTitle: "Startup Pitch",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Catalyst-HR Club",
+                society: "GAMING SOCIETY",
+                icon: "fa-gamepad",
+                eventTitle: "BGMI Tournament",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Meraki",
+                society: "ART SOCIETY",
+                icon: "fa-palette",
+                eventTitle: "Sketch Battle",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Quiz Club",
+                society: "QUIZ SOCIETY",
+                icon: "fa-circle-question",
+                eventTitle: "Quizathon",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Sports Society",
+                society: "SPORTS SOCIETY",
+                icon: "fa-futbol",
+                eventTitle: "Mini Tournament",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Environment Club",
+                society: "ECO SOCIETY",
+                icon: "fa-leaf",
+                eventTitle: "Green Drive",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Robotics Club",
+                society: "ROBOTICS SOCIETY",
+                icon: "fa-robot",
+                eventTitle: "Robo Race",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            },
+            {
+                clubName: "Social Service Club",
+                society: "NSS",
+                icon: "fa-hand-holding-heart",
+                eventTitle: "Charity Drive",
+                description: "ADD_EVENT_DESCRIPTION",
+                date: "ADD_DATE",
+                venue: "ADD_VENUE",
+                eligibility: "ADD_ELIGIBILITY",
+                deadline: "ADD_DEADLINE",
+                prizes: "ADD_PRIZES",
+                contact: "ADD_CONTACT",
+                registerLink: "ADD_REGISTER_LINK",
+                rules: ["ADD_RULE_1", "ADD_RULE_2", "ADD_RULE_3"],
+                coreTeam: [
+                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
+                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
+                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
+                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                ]
+            }
+        ];
 
-clubs.forEach((club, i) => {
-    grid.innerHTML += `
-        <div class="col-lg-4 col-md-6" data-aos="fade-up">
-            <div class="custom-card">
-                <div class="d-flex align-items-center mb-3">
-                    <i class="fa ${club.icon} text-danger fs-3 me-3"></i>
-                    <h4 class="mb-0">${club.name}</h4>
-                </div>
-                <div class="row g-2 mb-3">
-                    <div class="col-6"><div class="m-chip"><b>AK</b> Aditya K.</div></div>
-                    <div class="col-6"><div class="m-chip"><b>SG</b> Sneha G.</div></div>
-                </div>
-                <div class="bg-dark p-3 rounded-3">
-                    <h6>${club.event}</h6>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails('${club.event}', '${club.soc}')">VIEW DETAILS</button>
-                        <button class="btn btn-sm btn-danger w-100">REGISTER</button>
+        // ============================================
+        // Dynamically Generate Event Cards
+        // ============================================
+        const grid = document.getElementById('eventGrid');
+
+        clubsData.forEach((club, index) => {
+            // Get first two core team members for card display
+            const teamMember1 = club.coreTeam[0]?.name || "ADD_COORDINATOR";
+            const teamMember2 = club.coreTeam[1]?.name || "ADD_COORDINATOR";
+            const teamLabel1 = teamMember1.substring(0, 2).toUpperCase();
+            const teamLabel2 = teamMember2.substring(0, 2).toUpperCase();
+
+            grid.innerHTML += `
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="custom-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa ${club.icon} text-danger fs-3 me-3"></i>
+                            <h4 class="mb-0">${club.clubName}</h4>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6"><div class="m-chip"><b>${teamLabel1}</b> ${teamMember1}</div></div>
+                            <div class="col-6"><div class="m-chip"><b>${teamLabel2}</b> ${teamMember2}</div></div>
+                        </div>
+                        <div class="bg-dark p-3 rounded-3">
+                            <h6>${club.eventTitle}</h6>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails(${index})">VIEW DETAILS</button>
+                                <a href="${club.registerLink}" target="_blank" class="btn btn-sm btn-danger w-100">REGISTER</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    `;
-});
+            `;
+        });
 
-
-        // Open Detail Modal with 10 Core Team Members
-        function openDetails(title, soc) {
-            document.getElementById('modTitle').innerText = title;
-            document.getElementById('modSoc').innerText = soc;
-            document.getElementById('modCoreTitle').innerText = "CORE TEAM - " + soc;
-            const teamGrid = document.getElementById('modTeamGrid');
-            teamGrid.innerHTML = '';
+        // ============================================
+        // Open Detail Modal with Full Data
+        // ============================================
+        function openDetails(index) {
+            const club = clubsData[index];
             
-            // Loop for 10 core members
-            for(let k=1; k<=10; k++) {
-                teamGrid.innerHTML += `
-                    <div class="col">
-                        <img src="https://i.pravatar.cc/100?u=${title}${k}" class="modal-member-img" alt="Member">
-                        <p class="mb-0 fw-bold" style="font-size:0.65rem;">MEMBER ${k}</p>
+            // Set basic info
+            document.getElementById('modTitle').innerText = club.eventTitle;
+            document.getElementById('modSoc').innerText = club.society;
+            document.getElementById('modCoreTitle').innerText = "CORE TEAM - " + club.society;
+
+            // Set description in modal body
+            const modalBody = document.querySelector('#detailModal .modal-body');
+            const descParagraph = modalBody.querySelector('p.text-secondary');
+            if (descParagraph) {
+                descParagraph.innerText = club.description;
+            }
+
+            // Set date, venue, eligibility, deadline, prizes, contact
+            // These are in the row with two columns
+            const detailRows = modalBody.querySelectorAll('.row.g-4.mb-4 .col-6');
+            if (detailRows.length >= 2) {
+                // First column - date, eligibility, deadline
+                const leftCol = detailRows[0];
+                leftCol.innerHTML = `
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-clock detail-icon me-3"></i>
+                        <div><small class="text-secondary d-block">DATE</small><span class="small">${club.date}</span></div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-users detail-icon me-3"></i>
+                        <div><small class="text-secondary d-block">ELIGIBILITY</small><span class="small">${club.eligibility}</span></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-calendar-check detail-icon me-3"></i>
+                        <div><small class="text-secondary d-block">DEADLINE</small><span class="small">${club.deadline}</span></div>
+                    </div>
+                `;
+
+                // Second column - venue, prizes, contact
+                const rightCol = detailRows[1];
+                rightCol.innerHTML = `
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-map-marker-alt detail-icon me-3"></i>
+                        <div><small class="text-secondary d-block">VENUE</small><span class="small">${club.venue}</span></div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa fa-trophy detail-icon me-3"></i>
+                        <div><small class="text-secondary d-block">PRIZES</small><span class="small">${club.prizes}</span></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-phone detail-icon me-3"></i>
+                        <div><small class="text-secondary d-block">CONTACT</small><span class="small">${club.contact}</span></div>
                     </div>
                 `;
             }
+
+            // Set rules
+            const rulesContainer = modalBody.querySelector('h6 + div') || modalBody.querySelector('.rule-item').parentNode;
+            let rulesHTML = '';
+            club.rules.forEach(rule => {
+                rulesHTML += `<div class="rule-item"><i class="fa fa-play"></i><span>${rule}</span></div>`;
+            });
+            
+            // Find and update rules section
+            const rulesHeader = modalBody.querySelector('h6.text-secondary');
+            if (rulesHeader && rulesHeader.nextElementSibling) {
+                rulesHeader.nextElementSibling.innerHTML = rulesHTML;
+            }
+
+            // Set core team
+            const teamGrid = document.getElementById('modTeamGrid');
+            teamGrid.innerHTML = '';
+            club.coreTeam.forEach(member => {
+                const imgSrc = member.image && member.image !== "" ? member.image : `https://i.pravatar.cc/100?u=${member.name}`;
+                teamGrid.innerHTML += `
+                    <div class="col">
+                        <img src="${imgSrc}" class="modal-member-img" alt="${member.name}">
+                        <p class="mb-0 fw-bold" style="font-size:0.65rem;">${member.name}</p>
+                    </div>
+                `;
+            });
+
+            // Set REGISTER button link
+            const registerBtn = document.querySelector('#detailModal .modal-footer .btn-danger');
+            if (registerBtn) {
+                registerBtn.onclick = function() {
+                    window.open(club.registerLink, '_blank');
+                };
+            }
+
+            // Show modal
             new bootstrap.Modal(document.getElementById('detailModal')).show();
         }
 
+        // ============================================
         // Countdown Timer
+        // ============================================
         const target = new Date("March 15, 2026 09:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
