@@ -260,39 +260,50 @@
     <script>
         AOS.init();
 
-        const grid = document.getElementById('eventGrid');
-        const clubs = [
-            { name: "IT Club", icon: "fa-laptop", event: "Code Storm", soc: "TECH SOCIETY" },
-            { name: "Cultural Soc.", icon: "fa-masks-theater", event: "Nukkad Natak", soc: "DRAMATICS SOCIETY" },
-            { name: "Dance Club", icon: "fa-person-rays", event: "Dance Battle", soc: "DANCE SOCIETY" },
-            { name: "Music Society", icon: "fa-music", event: "Solo Vocals", soc: "MUSIC SOCIETY" }
-        ];
+      const grid = document.getElementById('eventGrid');
 
-        // Generate 20 Event Cards
-        for (let i = 1; i <= 20; i++) {
-            const club = clubs[i % 4];
-            grid.innerHTML += `
-                <div class="col-lg-4 col-md-6" data-aos="fade-up">
-                    <div class="custom-card">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fa ${club.icon} text-danger fs-3 me-3"></i>
-                            <h4 class="mb-0">${club.name}</h4>
-                        </div>
-                        <div class="row g-2 mb-3">
-                            <div class="col-6"><div class="m-chip"><b>AK</b> Aditya K.</div></div>
-                            <div class="col-6"><div class="m-chip"><b>SG</b> Sneha G.</div></div>
-                        </div>
-                        <div class="bg-dark p-3 rounded-3">
-                            <h6>${club.event} v${i}</h6>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails('${club.event} v${i}', '${club.soc}')">VIEW DETAILS</button>
-                                <button class="btn btn-sm btn-danger w-100">REGISTER</button>
-                            </div>
-                        </div>
+const clubs = [
+    { name: "Cybernauts-IT Club", icon: "fa-laptop", event: "Code Storm", soc: "TECH SOCIETY" },
+    { name: "Prominent-Marketing Club", icon: "fa-masks-theater", event: "Nukkad Natak", soc: "DRAMATICS SOCIETY" },
+    { name: "NSS", icon: "fa-person-rays", event: "Dance Battle", soc: "DANCE SOCIETY" },
+    { name: "Tabiir", icon: "fa-music", event: "Solo Vocals", soc: "MUSIC SOCIETY" },
+    { name: "Kalakriti", icon: "fa-camera", event: "Photo Walk", soc: "PHOTO SOCIETY" },
+    { name: "Bulls n Bear", icon: "fa-book", event: "Debate", soc: "LITERARY SOCIETY" },
+    { name: "Sandarbh", icon: "fa-shirt", event: "Ramp Walk", soc: "FASHION SOCIETY" },
+    { name: "Gliterati", icon: "fa-briefcase", event: "Startup Pitch", soc: "E-CELL" },
+    { name: "Catalyst-HR Club", icon: "fa-gamepad", event: "BGMI Tournament", soc: "GAMING SOCIETY" },
+    { name: "Art Club", icon: "fa-palette", event: "Sketch Battle", soc: "ART SOCIETY" },
+    { name: "Quiz Club", icon: "fa-circle-question", event: "Quizathon", soc: "QUIZ SOCIETY" },
+    { name: "Sports Society", icon: "fa-futbol", event: "Mini Tournament", soc: "SPORTS SOCIETY" },
+    { name: "Environment Club", icon: "fa-leaf", event: "Green Drive", soc: "ECO SOCIETY" },
+    { name: "Robotics Club", icon: "fa-robot", event: "Robo Race", soc: "ROBOTICS SOCIETY" },
+    { name: "Social Service Club", icon: "fa-hand-holding-heart", event: "Charity Drive", soc: "NSS" }
+];
+
+clubs.forEach((club, i) => {
+    grid.innerHTML += `
+        <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="custom-card">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa ${club.icon} text-danger fs-3 me-3"></i>
+                    <h4 class="mb-0">${club.name}</h4>
+                </div>
+                <div class="row g-2 mb-3">
+                    <div class="col-6"><div class="m-chip"><b>AK</b> Aditya K.</div></div>
+                    <div class="col-6"><div class="m-chip"><b>SG</b> Sneha G.</div></div>
+                </div>
+                <div class="bg-dark p-3 rounded-3">
+                    <h6>${club.event}</h6>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails('${club.event}', '${club.soc}')">VIEW DETAILS</button>
+                        <button class="btn btn-sm btn-danger w-100">REGISTER</button>
                     </div>
                 </div>
-            `;
-        }
+            </div>
+        </div>
+    `;
+});
+
 
         // Open Detail Modal with 10 Core Team Members
         function openDetails(title, soc) {
