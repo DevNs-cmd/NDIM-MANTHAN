@@ -16,14 +16,18 @@
     <style>
         :root {
             --primary-red: #ff0000;
-            --dark-bg: #0a0a0a;
-            --card-bg: #111111;
-            --border: #222;
+            --dark-bg: #f4f4f4;
+            /* Lighter background for better contrast */
+            --card-bg: #ffffff;
+            /* Pure white cards */
+            --border: #ddd;
+            --text-main: #000000;
+            /* Pitch black text */
         }
 
         body {
             background-color: var(--dark-bg);
-            color: #ffffff;
+            color: var(--text-main);
             font-family: 'Roboto', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -33,16 +37,21 @@
         h2,
         h3,
         h4,
+        h5,
+        h6,
         .navbar-brand {
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
+            color: var(--text-main);
         }
 
         /* --- Navbar --- */
         .navbar {
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(230, 230, 230, 0.95);
+            /* Duller Navbar */
             border-bottom: 1px solid var(--border);
             padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
@@ -52,10 +61,11 @@
         }
 
         .nav-link {
-            color: #fff !important;
+            color: #333 !important;
             text-transform: uppercase;
             font-size: 0.9rem;
             margin: 0 10px;
+            font-weight: 500;
         }
 
         .nav-link:hover {
@@ -183,22 +193,28 @@
 
         /* --- CUSTOM DETAILS WINDOW (MODAL) --- */
         .modal-content {
-            background: #0e0e0e;
-            color: #e0e0e0;
-            border: 1px solid #333;
+            background: #ffffff;
+            /* White background for better readability */
+            color: #222222;
+            /* Dark text */
+            border: 1px solid #ddd;
             border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .modal-header {
-            border-bottom: none;
-            padding-bottom: 0;
+            border-bottom: 1px solid #eee;
+            /* Slight border for separation */
+            padding-bottom: 15px;
         }
 
         .event-type {
-            color: #888;
+            color: #555;
+            /* Darker grey */
             font-size: 0.8rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+            font-weight: 700;
         }
 
         .detail-icon {
@@ -208,11 +224,14 @@
         }
 
         .rule-item {
-            color: #ccc;
-            font-size: 0.9rem;
+            color: #333;
+            /* Darker text for rules */
+            font-size: 0.95rem;
+            /* Slightly larger */
             margin-bottom: 8px;
             display: flex;
             align-items: flex-start;
+            font-weight: 500;
         }
 
         .rule-item i {
@@ -232,10 +251,23 @@
         }
 
         .core-team-label {
-            color: #888;
+            color: #444;
+            /* Darker label */
             font-size: 0.75rem;
             letter-spacing: 1px;
             margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* Override Bootstrap text-secondary for better contrast */
+        .text-secondary {
+            color: #555 !important;
+        }
+
+        /* Specific overrides for modal inputs/labels if needed */
+        .modal label,
+        .modal span.small {
+            color: #333;
         }
 
         /* --- Footer --- */
@@ -673,12 +705,202 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* --- LIGHT THEME OVERRIDES --- */
+        /* Override bg-black/bg-dark/text-white classes for light theme content */
+        .bg-black,
+        .bg-dark {
+            background-color: var(--dark-bg) !important;
+        }
+
+        /* Keep Footer and Authorities circles Dark/Specific */
+        footer {
+            background: #111 !important;
+        }
+
+        footer .text-white,
+        footer h2,
+        footer h5,
+        footer p,
+        footer a {
+            color: #fff !important;
+        }
+
+        footer .text-secondary {
+            color: #ccc !important;
+        }
+
+        /* Keep Hero Section Dark Text white */
+        #home .main-title,
+        #home .hero-subtext,
+        #home span {
+            color: #fff !important;
+        }
+
+        #home .main-title {
+            color: var(--primary-red) !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* General text-white override for body content */
+        .text-white {
+            color: var(--text-main) !important;
+        }
+
+        .section-title span.text-white {
+            color: var(--text-main) !important;
+        }
+
+        /* Modal Specifics */
+        .modal-content {
+            background: #f2f2f2 !important;
+            /* Match dull card bg */
+            color: #333 !important;
+            border: 1px solid #bbb;
+        }
+
+        .modal-header .btn-close-white {
+            filter: invert(0.8);
+            /* Dark grey close button */
+        }
+
+        /* Cards in Event Details */
+        #eventDetailsModal .custom-card {
+            background: #e6e6e6 !important;
+            /* Duller bg for inner cards */
+            border-color: #d0d0d0 !important;
+        }
+
+        #eventDetailsModal h5.text-white {
+            color: #333 !important;
+        }
+
+        .m-chip {
+            background: #e9ecef;
+            border-color: #dee2e6;
+            color: #333;
+        }
+
+        /* Navbar Toggler (make it visible on white) */
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        /* Coord Circle borders */
+        .coord-circle {
+            border-color: #ddd;
+        }
+
+        /* Btn Outline Light -> Dark equivalent */
+        .btn-outline-light {
+            color: #212529;
+            border-color: #212529;
+        }
+
+        .btn-outline-light:hover {
+            color: #fff;
+            background-color: #212529;
+            border-color: #212529;
+        }
+
+        /* --- Footer Styles --- */
+        footer {
+            background: linear-gradient(to bottom, #111, #000);
+            border-top: 4px solid var(--primary-red);
+            padding: 80px 0 40px;
+            color: #fff;
+        }
+
+        .footer-logo {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff0000, #ff4e4e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .footer-contributor-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 4px solid var(--primary-red);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-contributor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.15);
+        }
+
+        .footer-dev-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-red);
+            padding: 3px;
+            background: #fff;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: transform 0.5s;
+        }
+
+        .footer-contributor-card:hover .footer-dev-img {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .footer-contributor-card .text-secondary {
+            color: #6c757d !important;
+            /* Dark grey for white card */
+        }
+
+        .social-icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #eee;
+            color: #222 !important;
+            /* Force dark color */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+        .social-icon-btn:hover {
+            background: var(--primary-red);
+            color: #fff !important;
+            transform: translateY(-3px);
+        }
+
+        .footer-link {
+            color: #ccc !important;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-red) !important;
+            transform: scale(1.2);
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">MANTHAN-26</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -820,64 +1042,55 @@
         </div>
     </section>
 
-    <footer>
+    <footer id="footer">
         <div class="container text-center">
-            <h2 class="text-danger mb-4">MANTHAN-2026</h2>
+            <h2 class="footer-logo mb-2">MANTHAN-2026</h2>
             <p class="text-secondary small letter-spacing-2 mb-5">OFFICIAL FEST PORTAL</p>
 
-            <h5 class="text-white mb-4 position-relative d-inline-block">
+            <h5 class="text-white mb-5 position-relative d-inline-block fw-bold" style="letter-spacing: 2px;">
                 WEBSITE <span class="text-danger">CONTRIBUTORS</span>
                 <span class="position-absolute start-0 end-0 bottom-0 bg-danger"
-                    style="height: 2px; transform: scaleX(0.5); margin-bottom: -5px;"></span>
+                    style="height: 3px; transform: scaleX(0.7); margin-bottom: -10px; border-radius: 2px;"></span>
             </h5>
 
-            <div class="row justify-content-center g-4 mb-5 mt-2">
+            <div class="row justify-content-center g-4 mb-5">
                 <!-- Prem Aggarwal Card -->
-                <div class="col-md-4 col-sm-6 col-12">
-                    <div class="custom-card py-4 text-center h-100">
-                        <!-- EDIT IMAGE: Change src below to your image path -->
-                        <img src="premnew.png" class="dev-img mx-auto d-block mb-3" alt="Prem Aggarwal"
-                            style="width: 100px; height: 100px; border: 2px solid var(--primary-red); border-radius: 50%;">
-
-                        <h5 class="text-white fw-bold mb-1">Prem Aggarwal</h5>
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-contributor-card">
+                        <img src="premnew.png" class="footer-dev-img mx-auto d-block" alt="Prem Aggarwal">
+                        <h5 class="fw-bold mb-1 text-dark">Prem Aggarwal</h5>
                         <p class="small text-secondary mb-3">BCA Student</p>
-
-                        <div class="d-flex justify-content-center gap-3">
-                            <a href="#" target="_blank" class="text-white fs-4 hover-red"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a href="#" target="_blank" class="text-white fs-4 hover-red"><i
-                                    class="fab fa-linkedin-in"></i></a>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Dev Nath Suman Card -->
-                <div class="col-md-4 col-sm-6 col-12">
-                    <div class="custom-card py-4 text-center h-100">
-                        <!-- EDIT IMAGE: Change src below to your image path -->
-                        <img src="Dev.png" class="dev-img mx-auto d-block mb-3" alt="Dev Nath Suman"
-                            style="width: 100px; height: 100px; border: 2px solid var(--primary-red); border-radius: 50%;">
-
-                        <h5 class="text-white fw-bold mb-1">Dev Nath Suman</h5>
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-contributor-card">
+                        <img src="Dev.png" class="footer-dev-img mx-auto d-block" alt="Dev Nath Suman">
+                        <h5 class="fw-bold mb-1 text-dark">Dev Nath Suman</h5>
                         <p class="small text-secondary mb-3">BCA Student</p>
-
-                        <div class="d-flex justify-content-center gap-3">
+                        <div class="d-flex justify-content-center mt-3">
                             <a href="https://www.linkedin.com/in/dev-n-suman-3616a6377" target="_blank"
-                                class="text-white fs-4 hover-red"><i class="fab fa-linkedin-in"></i></a>
+                                class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Social Media Section -->
-            <div class="social-links mt-4">
-                <a href="#" class="text-white mx-3 fs-4"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white mx-3 fs-4"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="text-white mx-3 fs-4"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white mx-3 fs-4"><i class="fab fa-twitter"></i></a>
+            <div class="social-links mt-5 pt-4 border-top border-secondary opacity-75"
+                style="border-color: #333 !important;">
+                <a href="#" class="footer-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="footer-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="footer-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
             </div>
 
-            <p class="small text-secondary mt-5">© 2026 NDIM - Manthan Organizing Committee</p>
+            <p class="small text-secondary mt-4 mb-0 opacity-50">© 2026 NDIM - Manthan Organizing Committee</p>
         </div>
     </footer>
 
@@ -934,10 +1147,12 @@
 
                     <h6 class="text-secondary small text-uppercase mb-3" style="letter-spacing: 1px;">Rules &
                         Regulations</h6>
-                    <div class="rule-item"><i class="fa fa-play"></i><span>Team of 2</span></div>
-                    <div class="rule-item"><i class="fa fa-play"></i><span>5 min per speaker</span></div>
-                    <div class="rule-item"><i class="fa fa-play"></i><span>Rebuttal round included</span></div>
-                    <div class="rule-item"><i class="fa fa-play"></i><span>English/Hindi</span></div>
+                    <div id="rulesContainer">
+                        <div class="rule-item"><i class="fa fa-play"></i><span>Team of 2</span></div>
+                        <div class="rule-item"><i class="fa fa-play"></i><span>5 min per speaker</span></div>
+                        <div class="rule-item"><i class="fa fa-play"></i><span>Rebuttal round included</span></div>
+                        <div class="rule-item"><i class="fa fa-play"></i><span>English/Hindi</span></div>
+                    </div>
 
                     <div class="mt-5">
                         <!-- Event Details Button -->
@@ -1012,9 +1227,9 @@
                         venue: "Lab 1",
                         eligibility: "All students",
                         deadline: "12 March 2026",
-                        prizes: "₹5000 + Trophy",
+                        prizes: "₹5000 + Trophy. Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "https://forms.google.com/internal-link",
-                        externalLink: "https://forms.google.com/external-link",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: [
                             "Rule 1 text...",
                             "Rule 2 text...",
@@ -1029,7 +1244,7 @@
                         venue: "Main Hall",
                         eligibility: "Selected Teams",
                         deadline: "17 March 2026",
-                        prizes: "₹10000 + Certificate",
+                        prizes: "₹10000 + Certificate. Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "https://forms.google.com/internal-final",
                         externalLink: "https://forms.google.com/external-final",
                         rules: [
@@ -1054,38 +1269,51 @@
             {
                 clubName: "Prominent-Marketing Club",
                 society: "MARKETING CLUB",
-                icon: "fa-masks-theater",
-                eventTitle: "Nukkad Natak",
-                description: "ADD_EVENT_DESCRIPTION",
-                date: "ADD_DATE",
-                venue: "ADD_VENUE",
-                eligibility: "ADD_ELIGIBILITY",
-                deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
-                contact: "ADD_CONTACT",
-                registerLink: "ADD_REGISTER_LINK",
-                rules: [],
+                icon: "fa-bullhorn",
+                eventTitle: "Brand Pitch Competition",
+                description: "Brand Pitch is a marketing competition in which teams present an innovative brand or product concept within a chosen industry sector. Participants are required to pitch their idea by clearly outlining the problem it addresses, the target audience, brand strategy, revenue model, and competitive advantage. Shortlisted teams will advance to a Q&A round with the judges, where their ideas will be evaluated on the basis of creativity, feasibility, market potential, presentation skills, and strategic clarity.",
+                date: "17 March 2026",
+                venue: "NDIM Campus",
+                eligibility: "Teams of 2-4 members",
+                deadline: "TBA",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                contact: "Anupriya Jaiswal (7011191167) <br> Sunidhi Sharma (9667429336)",
+                registerLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                rules: [
+                    "Eligibility: Teams of 2-4 members (cross-discipline encouraged).",
+                    "Sectors: FMCG, IT/Software, Fintech, E-Commerce/Retail, Food & Beverage, Fashion/Apparel.",
+                    "Rounds: Round 1 (Brand Pitch), Round 2 (Judge Q&A).",
+                    "Time Limits: Pitch 3-5 min, Q&A 2 min.",
+                    "Judging Criteria: Creativity, Strategy, Feasibility, Market, Presentation, Q&A, Visuals.",
+                    "Registration Fee: Team of 2 - ₹70 | Team of 4 - ₹100."
+                ],
                 socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
                 events: [
                     {
-                        name: "Main Event",
-                        description: "Participate in this exciting event and showcase your talent!",
+                        name: "Brand Pitch Competition",
+                        description: "Pitch your innovative brand or product concept. Sectors: FMCG, IT, Fintech, Retail, F&B, Fashion.",
                         date: "17 March 2026",
                         venue: "NDIM Campus",
-                        eligibility: "Open for all",
-                        deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
-                        internalLink: "#",
-                        externalLink: "#",
-                        rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
+                        eligibility: "Teams of 2-4 members",
+                        deadline: "TBA",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        internalLink: "https://forms.gle/v9XRGeBiBKAum1wA9",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                        rules: [
+                            "Presentation (7-10 min total): Pitch (3-5 min) covering Idea, Problem, Audience, USP, Strategy, Revenue, Advantage, Growth.",
+                            "Q&A (2 min): Future scope, Sustainability, Competitor copy advantage.",
+                            "Judging (100 pts): Creativity (15), Strategy (20), Feasibility (15), Market (15), Presentation (15), Q&A (10), Visuals (10).",
+                            "Rules: Follow time limits. Internet/props allowed. Plagiarism = Disqualification. Judges decision final."
+                        ]
                     }
                 ],
                 coreTeam: [
-                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
-                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
-                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
-                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
-                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                    { name: "Anupriya Jaiswal <br> President", image: "anupriya.png" },
+                    { name: "Sunidhi Sharma <br> Vice-President", image: "ADD_IMAGE_PATH_2" },
+                    { name: "Dev N Suman <br> Secretary", image: "Dev.png" },
+                    { name: "Noor Askha Akhtar <br> Documentation Head", image: "ADD_IMAGE_PATH_5" },
+                    { name: "Krati Verma <br> Social Media Head", image: "krati.png" },
+                    { name: "Raini Negi <br> Event Head ", image: "raini.png" },
                 ]
             },
             {
@@ -1098,7 +1326,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1111,9 +1339,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1136,7 +1364,7 @@
                 venue: " NDIM Campus",
                 eligibility: "College Students",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "President: Sonam Grover ( 8595511581) <br> PR Head: Yashi Jain (9876543214)",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1149,9 +1377,9 @@
                         venue: "NDIM Campus",
                         eligibility: "College Students",
                         deadline: "12 March 2026",
-                        prizes: "Exciting Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: [
                             "Team Composition: Minimum 10, Maximum 24 Participants",
                             "Performance Guidelines: No fire/smoke/colors. Only live music.",
@@ -1185,7 +1413,7 @@
                 venue: "NDIM",
                 eligibility: "College Students",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "<br>President: Prachi Badoni (7042418197) <br>  secretary: Mervin Chen (9821827643) <br>Vice president:Priya Verma (9354061842)",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1198,9 +1426,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1231,7 +1459,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1244,9 +1472,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1268,7 +1496,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1281,9 +1509,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1305,7 +1533,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1318,9 +1546,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1342,7 +1570,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1355,9 +1583,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1379,7 +1607,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1392,9 +1620,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1416,7 +1644,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1429,9 +1657,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1453,7 +1681,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1466,9 +1694,9 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
-                        externalLink: "#",
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
                     }
                 ],
@@ -1490,7 +1718,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1503,7 +1731,7 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
@@ -1527,7 +1755,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1540,7 +1768,7 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
@@ -1564,7 +1792,7 @@
                 venue: "ADD_VENUE",
                 eligibility: "ADD_ELIGIBILITY",
                 deadline: "ADD_DEADLINE",
-                prizes: "ADD_PRIZES",
+                prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
                 registerLink: "ADD_REGISTER_LINK",
                 rules: [],
@@ -1577,7 +1805,7 @@
                         venue: "NDIM Campus",
                         eligibility: "Open for all",
                         deadline: "10 March 2026",
-                        prizes: "Exciting Cash Prizes",
+                        prizes: "Details in <a href='For%20students%20Manthan%20copy_20260213_142205_0000.pdf' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
                         rules: ["Rule 1: Follow the guidelines.", "Rule 2: Be on time."]
@@ -1625,7 +1853,7 @@
                             <div class="col-6"><div class="m-chip"><b>${teamLabel2}</b> ${teamMember2}</div></div>
                         </div>
                         <div class="bg-dark p-3 rounded-3">
-                            <h6>${club.eventTitle}</h6>
+                            <h6 class="text-white">${club.eventTitle}</h6>
                             <div class="d-flex gap-2">
                                 <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails(${index})">VIEW DETAILS</button>
                                 <a href="${club.registerLink}" target="_blank" class="btn btn-sm btn-danger w-100">REGISTER</a>
