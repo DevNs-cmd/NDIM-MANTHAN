@@ -895,6 +895,70 @@
             transform: scale(1.2);
             display: inline-block;
         }
+
+        /* --- Registration Modal Styles --- */
+        .registration-card:hover .card {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2) !important;
+        }
+
+        .registration-card:hover .icon-circle {
+            transform: rotate(360deg);
+            transition: transform 0.6s ease;
+        }
+
+        .registration-card .icon-circle {
+            transition: transform 0.6s ease;
+        }
+
+        .registration-card:active .card {
+            transform: translateY(-2px);
+        }
+
+        /* Modal animation */
+        .modal.fade .modal-dialog {
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        .modal.show .modal-dialog {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Responsive Registration Modal */
+        @media (max-width: 575.98px) {
+            #registrationModal .modal-sm {
+                max-width: 90%;
+                margin: 1rem auto;
+            }
+
+            #registrationModal .card-body {
+                padding: 0.75rem !important;
+            }
+
+            #registrationModal .icon-circle {
+                width: 40px !important;
+                height: 40px !important;
+            }
+
+            #registrationModal .icon-circle i {
+                font-size: 1.2rem !important;
+            }
+
+            #registrationModal h6 {
+                font-size: 0.9rem;
+            }
+
+            #registrationModal small {
+                font-size: 0.7rem !important;
+            }
+
+            #registrationModal .fa-arrow-right {
+                font-size: 1rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -1192,6 +1256,69 @@
         </div>
     </div>
 
+    <!-- Registration Modal -->
+    <div class="modal fade" id="registrationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content" style="border-radius: 20px; overflow: hidden; border: none;">
+                <div class="modal-header border-0 pb-2"
+                    style="background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);">
+                    <h5 class="modal-title text-white fw-bold w-100 text-center">
+                        <i class="fa fa-user-plus me-2"></i>Choose Registration
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body px-4 py-4" style="background: #f8f9fa;">
+                    <p class="text-center text-secondary mb-4 small">Select your registration type below</p>
+
+                    <!-- Internal Registration Card -->
+                    <a id="internalRegistrationBtn" href="#" target="_blank"
+                        class="registration-card text-decoration-none d-block mb-3" style="transition: all 0.3s ease;">
+                        <div class="card border-0 shadow-sm"
+                            style="border-radius: 15px; overflow: hidden; transition: all 0.3s ease;">
+                            <div class="card-body p-3"
+                                style="background: linear-gradient(135deg, #ff0000 0%, #ff3333 100%);">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle me-3"
+                                        style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa fa-user-check text-white" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 text-white fw-bold">Internal Registration</h6>
+                                        <small class="text-white" style="opacity: 0.9; font-size: 0.75rem;">For NDIM
+                                            Students</small>
+                                    </div>
+                                    <i class="fa fa-arrow-right text-white" style="font-size: 1.2rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- External Registration Card -->
+                    <a id="externalRegistrationBtn" href="#" target="_blank"
+                        class="registration-card text-decoration-none d-block" style="transition: all 0.3s ease;">
+                        <div class="card border-0 shadow-sm"
+                            style="border-radius: 15px; overflow: hidden; transition: all 0.3s ease;">
+                            <div class="card-body p-3" style="background: #ffffff; border: 2px solid #ff0000;">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle me-3"
+                                        style="width: 50px; height: 50px; background: rgba(255,0,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa fa-globe text-danger" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 text-dark fw-bold">External Registration</h6>
+                                        <small class="text-secondary" style="font-size: 0.75rem;">For Other College
+                                            Students</small>
+                                    </div>
+                                    <i class="fa fa-arrow-right text-danger" style="font-size: 1.2rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
@@ -1214,7 +1341,8 @@
                 // deadline: "",
                 // prizes: "ADD_PRIZES",
                 contact: "  President:Prem Aggarwal (8920307438),<br> Vice-president:Krrish Nalwa (8076825690) ",
-                registerLink: "ADD_REGISTER_LINK",
+                internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
 
                 socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
@@ -1278,7 +1406,8 @@
                 deadline: "TBA",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "Anupriya Jaiswal (7011191167) <br> Sunidhi Sharma (9667429336)",
-                registerLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                internalRegisterLink: "https://forms.gle/v9XRGeBiBKAum1wA9",
+                externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [
                     "Eligibility: Teams of 2-4 members (cross-discipline encouraged).",
                     "Sectors: FMCG, IT/Software, Fintech, E-Commerce/Retail, Food & Beverage, Fashion/Apparel.",
@@ -1328,7 +1457,8 @@
                 deadline: "ADD_DEADLINE",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
-                registerLink: "ADD_REGISTER_LINK",
+                internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
                 socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
                 events: [
@@ -1366,7 +1496,8 @@
                 deadline: "ADD_DEADLINE",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "President: Sonam Grover ( 8595511581) <br> PR Head: Yashi Jain (9876543214)",
-                registerLink: "ADD_REGISTER_LINK",
+                internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
                 socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
                 events: [
@@ -1415,7 +1546,8 @@
                 deadline: "ADD_DEADLINE",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "<br>President: Prachi Badoni (7042418197) <br>  secretary: Mervin Chen (9821827643) <br>Vice president:Priya Verma (9354061842)",
-                registerLink: "ADD_REGISTER_LINK",
+                internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
                 socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
                 events: [
@@ -1461,7 +1593,8 @@
                 deadline: "ADD_DEADLINE",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "ADD_CONTACT",
-                registerLink: "ADD_REGISTER_LINK",
+                internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
                 socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
                 events: [
@@ -1856,7 +1989,7 @@
                             <h6 class="text-white">${club.eventTitle}</h6>
                             <div class="d-flex gap-2">
                                 <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails(${index})">VIEW DETAILS</button>
-                                <a href="${club.registerLink}" target="_blank" class="btn btn-sm btn-danger w-100">REGISTER</a>
+                                <button class="btn btn-sm btn-danger w-100" onclick="openRegistrationModal(${index})">REGISTER</button>
                             </div>
                             ${socialHtml}
                         </div>
@@ -2031,16 +2164,41 @@
                 `;
             });
 
-            // Set REGISTER button link
+            // Set REGISTER button to open registration modal
             const registerBtn = document.querySelector('#detailModal .modal-footer .btn-danger');
             if (registerBtn) {
                 registerBtn.onclick = function () {
-                    window.open(club.registerLink, '_blank');
+                    // Close detail modal first
+                    bootstrap.Modal.getInstance(document.getElementById('detailModal')).hide();
+                    // Open registration modal
+                    openRegistrationModal(index);
                 };
             }
 
             // Show modal
             new bootstrap.Modal(document.getElementById('detailModal')).show();
+        }
+
+        // ============================================
+        // Open Registration Modal
+        // ============================================
+        function openRegistrationModal(index) {
+            const club = clubsData[index];
+
+            // Set the links for internal and external registration
+            const internalBtn = document.getElementById('internalRegistrationBtn');
+            const externalBtn = document.getElementById('externalRegistrationBtn');
+
+            if (internalBtn) {
+                internalBtn.href = club.internalRegisterLink || '#';
+            }
+
+            if (externalBtn) {
+                externalBtn.href = club.externalRegisterLink || '#';
+            }
+
+            // Show the registration modal
+            new bootstrap.Modal(document.getElementById('registrationModal')).show();
         }
 
         // ============================================
