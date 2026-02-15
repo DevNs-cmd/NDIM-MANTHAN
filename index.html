@@ -179,8 +179,8 @@
 
         /* --- Authority Styling --- */
         .coord-circle {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -188,7 +188,43 @@
             margin: 0 auto 20px;
             font-size: 1.8rem;
             font-weight: 700;
-            border: 2px solid #333;
+            border: 4px solid var(--primary-red);
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .coord-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .custom-card:hover .coord-circle {
+            transform: scale(1.1);
+            border-color: #000;
+        }
+
+        /* --- Registration Modal Hover Effects --- */
+        .registration-card-v2 {
+            transition: all 0.3s ease;
+        }
+
+        .registration-card-v2:hover {
+            transform: translateY(-5px);
+        }
+
+        .registration-card-v2:hover .reg-card {
+            box-shadow: 0 12px 25px rgba(255, 0, 0, 0.3) !important;
+        }
+
+        .registration-card-v2:hover .reg-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .registration-card-v2:hover .reg-arrow {
+            transform: translateX(5px);
         }
 
         /* --- CUSTOM DETAILS WINDOW (MODAL) --- */
@@ -245,18 +281,36 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 1px solid #444;
+            border: 2px solid var(--primary-red);
             object-fit: cover;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .modal-member-img:hover {
+            transform: scale(1.1);
+            border-color: #000;
+        }
+
+        .member-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0;
+            line-height: 1.2;
         }
 
         .core-team-label {
-            color: #444;
-            /* Darker label */
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            font-weight: bold;
+            color: #222;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            font-weight: 800;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-red);
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
         /* Override Bootstrap text-secondary for better contrast */
@@ -309,9 +363,10 @@
             }
 
             .nav-link {
-                padding: 8px 12px !important;
+                padding: 10px 15px !important;
                 margin: 0 5px;
-                font-size: 0.8rem;
+                font-size: 1rem;
+                font-weight: 700;
             }
 
             .navbar-nav {
@@ -343,43 +398,44 @@
             }
 
             .section-title {
-                font-size: clamp(1.8rem, 8vw, 2.5rem);
+                font-size: clamp(2.2rem, 10vw, 3rem);
                 margin-bottom: 40px;
             }
 
             /* About Section */
             .about .lead {
-                font-size: 0.95rem;
+                font-size: 1.1rem;
+                line-height: 1.6;
             }
 
             .custom-card {
-                padding: 20px 15px;
+                padding: 25px 20px;
             }
 
             .custom-card h5 {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .custom-card .fs-1 {
-                font-size: 2rem !important;
+                font-size: 2.2rem !important;
             }
 
             .custom-card .small {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
 
             /* Events Section */
             #eventGrid .custom-card {
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
 
             .m-chip {
-                font-size: 0.65rem;
-                padding: 6px;
+                font-size: 0.8rem;
+                padding: 8px;
             }
 
             .m-chip b {
-                font-size: 0.6rem;
+                font-size: 0.75rem;
             }
 
             .bg-dark h6 {
@@ -398,51 +454,60 @@
 
             /* Authorities Section */
             .coord-circle {
-                width: 70px;
-                height: 70px;
-                font-size: 1.2rem;
-                margin-bottom: 15px;
+                width: 100px;
+                height: 100px;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
             }
 
             .coord-circle+h5 {
-                font-size: 0.95rem;
+                font-size: 1.1rem;
             }
 
             .coord-circle+h5+.small {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
             }
 
             /* Modal */
             .modal-dialog {
-                margin: 10px;
+                margin: 15px;
             }
 
             .modal-content {
-                margin: 5px;
+                margin: 0;
             }
 
             .modal-body {
-                padding: 15px;
-                max-height: 70vh;
+                padding: 20px;
+                max-height: 80vh;
                 overflow-y: auto;
             }
 
             .modal-title {
-                font-size: 1.3rem;
+                font-size: 1.6rem;
             }
 
             .detail-icon {
-                width: 15px;
-                font-size: 0.9rem;
+                width: 20px;
+                font-size: 1.1rem;
             }
 
             .rule-item {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
             .modal-member-img {
-                width: 50px;
-                height: 50px;
+                width: 100px;
+                height: 100px;
+            }
+
+            .member-name {
+                font-size: 0.85rem;
+            }
+
+            .core-team-label {
+                font-size: 0.8rem;
+                margin-bottom: 20px;
             }
 
             .modal-footer {
@@ -455,20 +520,20 @@
             }
 
             footer h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .dev-img {
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
             }
 
             .dev-name {
-                font-size: 0.9rem;
+                font-size: 1.1rem;
             }
 
             footer .small {
-                font-size: 0.7rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -1065,16 +1130,20 @@
             <div class="row g-4 justify-content-center mb-5">
                 <div class="col-md-3">
                     <div class="custom-card">
-                        <div class="coord-circle" style="background: #2b1d0e; color: #d4a017;">DA</div>
+                        <div class="coord-circle">
+                            <img src="https://i.pravatar.cc/150?u=Anand" alt="Dr. Anand Sharma">
+                        </div>
                         <h5>Dr. Anand Sharma</h5>
-                        <p class="text-danger small">FEST DIRECTOR</p>
+                        <p class="text-danger small fw-bold">FEST DIRECTOR</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="custom-card">
-                        <div class="coord-circle" style="background: #1d0e2b; color: #a017d4;">PN</div>
+                        <div class="coord-circle">
+                            <img src="https://i.pravatar.cc/150?u=Nidhi" alt="Prof. Nidhi Kapoor">
+                        </div>
                         <h5>Prof. Nidhi Kapoor</h5>
-                        <p class="text-danger small">CHIEF COORDINATOR</p>
+                        <p class="text-danger small fw-bold">CHIEF COORDINATOR</p>
                     </div>
                 </div>
             </div>
@@ -1083,23 +1152,29 @@
             <div class="row g-4 justify-content-center">
                 <div class="col-md-4">
                     <div class="custom-card">
-                        <div class="coord-circle" style="background: #2b0e0e; color: #ff4d4d;">DR</div>
-                        <h5>Dr. R.K. Mittal</h5>
-                        <p class="text-warning small">DIRECTOR</p>
+                        <div class="coord-circle">
+                            <img src="anudeep.png" alt="Dr. R.K. Mittal">
+                        </div>
+                        <h5>Dr.Anudeep Arora</h5>
+                        <p class="text-warning small fw-bold">DIRECTOR</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="custom-card">
-                        <div class="coord-circle" style="background: #0e1d2b; color: #4da6ff;">MV</div>
-                        <h5>Mr. Vikas Gupta</h5>
-                        <p class="text-warning small">CEO</p>
+                        <div class="coord-circle">
+                            <img src="bindu.png" alt="Dr.Bindu">
+                        </div>
+                        <h5>Dr.Bindu</h5>
+                        <p class="text-warning small fw-bold">Chairperson</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="custom-card">
-                        <div class="coord-circle" style="background: #0e2b1d; color: #17d4a0;">MS</div>
-                        <h5>Mrs. Sunita Agarwal</h5>
-                        <p class="text-warning small">MANAGING DIRECTOR</p>
+                        <div class="coord-circle">
+                            <img src="ayush.png" alt="Major Sandhu">
+                        </div>
+                        <h5>Dr. Ayush Kumar</h5>
+                        <p class="text-warning small fw-bold">Managing Director</p>
                     </div>
                 </div>
             </div>
@@ -1405,7 +1480,7 @@
                 eligibility: "College Students",
                 deadline: "TBA",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
-                contact: "Anupriya Jaiswal (7011191167) President  <br> Sunidhi Sharma (9667429336) Vice President",
+                contact: "Anupriya Jaiswal - President <br> (7011191167) <br> Sunidhi Sharma - Vice President <br> (9667429336) ",
                 internalRegisterLink: "https://forms.gle/v9XRGeBiBKAum1wA9",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [
@@ -1416,7 +1491,7 @@
                     "Judging Criteria: Creativity, Strategy, Feasibility, Market, Presentation, Q&A, Visuals.",
                     "Registration Fee: Team of 2 - ₹70 | Team of 4 - ₹100."
                 ],
-                socials: { instagram: "https://instagram.com", linkedin: "https://linkedin.com" },
+                socials: { instagram: "https://www.instagram.com/prominent_ndim?igsh=MWdnM3hoY2F5bXJ0Mg==", linkedin: "https://www.linkedin.com/company/prominent-the-marketing-club/posts/?feedView=all" },
                 events: [
                     {
                         name: "Brand Pitch Competition",
@@ -1986,7 +2061,6 @@
                             <div class="col-6"><div class="m-chip"><b>${teamLabel2}</b> ${teamMember2}</div></div>
                         </div>
                         <div class="bg-dark p-3 rounded-3">
-                            <h6 class="text-white">${club.eventTitle}</h6>
                             <div class="d-flex gap-2">
                                 <button class="btn btn-sm btn-outline-light w-100" onclick="openDetails(${index})">VIEW DETAILS</button>
                                 <button class="btn btn-sm btn-danger w-100" onclick="openRegistrationModal(${index})">REGISTER</button>
@@ -2002,6 +2076,7 @@
         // Open Detail Modal with Full Data
         // ============================================
         let currentClub = null;
+        let currentClubIndex = null;
 
         document.getElementById("openEventDetails").addEventListener("click", function () {
             if (!currentClub || !currentClub.events) return;
@@ -2064,13 +2139,10 @@
 
                     <!-- Buttons Outside -->
                     <div class="row justify-content-center">
-                        <div class="col-md-8 d-flex gap-3 flex-column flex-sm-row">
-                            <a href="${event.internalLink}" target="_blank" class="btn btn-danger flex-fill py-2 fw-bold">
-                                <i class="fa fa-user-check me-2"></i> INTERNAL REGISTRATION
-                            </a>
-                            <a href="${event.externalLink}" target="_blank" class="btn btn-outline-danger flex-fill py-2 fw-bold">
-                                <i class="fa fa-globe me-2"></i> EXTERNAL REGISTRATION
-                            </a>
+                        <div class="col-md-8 text-center">
+                            <button onclick="openRegistrationModalFromDetails()" class="btn btn-danger btn-lg w-100 py-3 fw-bold shadow-lg" style="border-radius: 12px; letter-spacing: 1px;">
+                                <i class="fa fa-edit me-2"></i> REGISTER NOW
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -2085,10 +2157,11 @@
 
         function openDetails(index) {
             currentClub = clubsData[index];
+            currentClubIndex = index;
             const club = clubsData[index];
 
             // Set basic info
-            document.getElementById('modTitle').innerText = club.eventTitle;
+            document.getElementById('modTitle').innerText = club.clubName;
             document.getElementById('modSoc').innerText = club.society;
             document.getElementById('modCoreTitle').innerText = "CORE TEAM - " + club.society;
 
@@ -2157,9 +2230,9 @@
             club.coreTeam.forEach(member => {
                 const imgSrc = member.image && member.image !== "" ? member.image : `https://i.pravatar.cc/100?u=${member.name}`;
                 teamGrid.innerHTML += `
-                    <div class="col">
+                    <div class="col text-center">
                         <img src="${imgSrc}" class="modal-member-img" alt="${member.name}">
-                        <p class="mb-0 fw-bold" style="font-size:0.65rem;">${member.name}</p>
+                        <p class="member-name">${member.name}</p>
                     </div>
                 `;
             });
@@ -2182,6 +2255,23 @@
         // ============================================
         // Open Registration Modal
         // ============================================
+        function openRegistrationModalFromDetails() {
+            // Close event details modal
+            const eventModalEl = document.getElementById('eventDetailsModal');
+            const eventModal = bootstrap.Modal.getInstance(eventModalEl);
+            if (eventModal) eventModal.hide();
+
+            // Close main detail modal if open
+            const detailModalEl = document.getElementById('detailModal');
+            const detailModal = bootstrap.Modal.getInstance(detailModalEl);
+            if (detailModal) detailModal.hide();
+
+            // Open registration modal with current index
+            if (currentClubIndex !== null) {
+                openRegistrationModal(currentClubIndex);
+            }
+        }
+
         function openRegistrationModal(index) {
             const club = clubsData[index];
 
@@ -2219,4 +2309,3 @@
 </body>
 
 </html>
-
