@@ -127,20 +127,23 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             color: var(--primary-red);
+            font-weight: 700;
         }
 
         /* --- Custom Cards --- */
         .custom-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 25px;
-            transition: 0.3s;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .custom-card:hover {
@@ -162,19 +165,210 @@
             display: block;
         }
 
-        /* --- Gallery --- */
-        .gallery-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: 0.3s;
-            cursor: pointer;
+        /* --- Premium 3D Gallery --- */
+        #gallery {
+            background: radial-gradient(circle at center, rgba(255, 0, 0, 0.02) 0%, #fff 70%);
+            position: relative;
         }
 
-        .gallery-img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.2);
+        .gallery-item-wrap {
+            perspective: 1200px;
+            margin-bottom: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 320px;
+            cursor: pointer;
+            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sophisticated Glint */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(125deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0.05) 40%,
+                    transparent 50%,
+                    transparent 100%);
+            opacity: 0;
+            transition: 0.6s;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s;
+            opacity: 0.9;
+        }
+
+        .gallery-item:hover {
+            transform: rotateY(10deg) rotateX(6deg) translateY(-12px);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+            transform: translateX(10%) translateY(10%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12) translateZ(10px);
+            opacity: 0.6;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            opacity: 0;
+            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateZ(20px);
+            z-index: 3;
+        }
+
+        .gallery-item .overlay-content {
+            transform: translateZ(50px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+            transform: translateZ(40px);
+        }
+
+        .gallery-item .overlay span {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .gallery-item .overlay i {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .overlay i {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+        }
+
+        /* Clean Section Title */
+        .section-title span {
+            color: var(--primary-red);
+            position: relative;
+        }
+
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-red);
+            border-radius: 2px;
+        }
+
+        @keyframes floatText {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Responsive Gallery */
+        @media (max-width: 768px) {
+            .gallery-item {
+                height: 250px;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-8px) scale(1.02);
+            }
+        }
+
+        .gallery-more-container {
+            display: none;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .view-all-btn {
+            background: #fff;
+            color: #000;
+            border: 2px solid var(--primary-red);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            margin-top: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-all-btn:hover {
+            background: var(--primary-red);
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
+        }
+
+        .view-all-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .view-all-btn:hover::after {
+            left: 100%;
+        }
+
+        .view-all-btn i {
+            transition: transform 0.5s ease;
+        }
+
+        .view-all-btn.active i {
+            transform: rotate(180deg);
         }
 
         /* --- Authority Styling --- */
@@ -597,32 +791,26 @@
         /* Landscape orientation adjustments */
         @media (max-height: 500px) and (orientation: landscape) {
             #home {
-                min-height: auto;
-                padding: 100px 20px 50px;
+                min-height: 120vh;
+                padding: 120px 20px 80px;
             }
 
             .main-title {
-                font-size: clamp(2rem, 8vw, 3.5rem);
+                font-size: clamp(2rem, 10vw, 4rem);
             }
         }
 
-        /* High DPI / Retina displays */
-        @media (-webkit-min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi) {
-            .gallery-img {
-                image-rendering: -webkit-optimize-contrast;
+        /* Improved touch interactions */
+        @media (hover: none) {
+
+            .custom-card:active,
+            .gallery-item:active {
+                transform: scale(0.98);
             }
-        }
 
-        /* Reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            .gallery-item .overlay {
+                opacity: 1 !important;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 40%);
             }
         }
 
@@ -1215,13 +1403,13 @@
                 (NDIM), affiliated with Guru Gobind Singh Indraprastha University.
             </p>
             <div class="row g-4" data-aos="fade-up">
-                <div class="col-md-3">
+                <div class="col-lg-3 col-sm-6">
                     <div class="custom-card"><i class="fa fa-calendar-alt text-danger fs-1 mb-3"></i>
                         <h5>15-16 March 2026</h5>
                         <p class="small text-secondary">DATE</p>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-sm-6">
                     <div class="custom-card venue-clickable" data-bs-toggle="modal" data-bs-target="#venueModal"
                         style="cursor: pointer;">
                         <i class="fa fa-map-marker-alt text-danger fs-1 mb-3"></i>
@@ -1229,13 +1417,13 @@
                         <p class="small text-secondary">VENUE</p>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-sm-6">
                     <div class="custom-card"><i class="fa fa-users text-danger fs-1 mb-3"></i>
                         <h5>1k +</h5>
                         <p class="small text-secondary">EXPECTED FOOTFALL</p>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 col-sm-6">
                     <div class="custom-card"><i class="fa fa-trophy text-danger fs-1 mb-3"></i>
                         <h5>15+ Events</h5>
                         <p class="small text-secondary">TOTAL EVENTS</p>
@@ -1255,46 +1443,100 @@
 
     <section id="gallery" class="section-padding">
         <div class="container text-center">
-            <h2 class="section-title">Photo <span class="text-white">Gallery</span></h2>
-            <div class="row g-3">
-                <div class="col-md-4 col-6"><img
-                        src="https://images.unsplash.com/photo-1514525253361-bee8718a300a?w=500" class="gallery-img">
+            <h2 class="section-title">Photo <span>Gallery</span></h2>
+            <p class="text-secondary mb-5">Capturing the vibrant energy and moments of MANTHAN</p>
+
+            <div class="row g-4">
+                <!-- Item 1 -->
+                <div class="col-lg-4 col-sm-6" data-aos="fade-up">
+                    <div class="gallery-item-wrap">
+                        <div class="gallery-item">
+                            <img src="fest1.png" alt="Fest Moment">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <span>CONCERT NIGHT</span>
+                                    <i class="fa fa-expand"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 col-6"><img
-                        src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500" class="gallery-img">
+                <!-- Item 2 -->
+                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item-wrap">
+                        <div class="gallery-item">
+                            <img src="fest2.png" alt="DJ Night">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <span>DJ VIBES</span>
+                                    <i class="fa fa-expand"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 col-6"><img
-                        src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=500" class="gallery-img">
+                <!-- Item 3 -->
+                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item-wrap">
+                        <div class="gallery-item">
+                            <img src="fest4.png" alt="Crowd">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <span>CROWD ENERGY</span>
+                                    <i class="fa fa-expand"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Hidden More Photos -->
+            <div id="gallery-more" class="gallery-more-container">
+                <div class="row g-4 mt-4">
+                    <!-- Item 4 -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="gallery-item-wrap">
+                            <div class="gallery-item">
+                                <img src="fest5.png" alt="Stage">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <span>MAIN STAGE</span>
+                                        <i class="fa fa-expand"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="gallery-item-wrap">
+                            <div class="gallery-item">
+                                <img src="fest6.png" alt="Lighting">
+                                <div class="overlay">
+                                    <div class="overlay-content">
+                                        <span>NEON LIGHTS</span>
+                                        <i class="fa fa-expand"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="view-all-btn" id="toggleGallery">
+                    <span id="btnText">VIEW ALL PHOTOS</span>
+                    <i class="fa fa-chevron-down"></i>
+                </button>
             </div>
         </div>
     </section>
 
     <section id="authorities" class="section-padding bg-black">
         <div class="container text-center">
-            <h2 class="section-title mb-5">Fest <span class="text-white">Coordinators</span></h2>
-            <div class="row g-4 justify-content-center mb-5">
-                <div class="col-md-3">
-                    <div class="custom-card">
-                        <div class="coord-circle">
-                            <img src="aryan kumar.png" alt="Aryan Kumar">
-                        </div>
-                        <h5>Aryan Kumar</h5>
-                        <p class="text-danger small fw-bold"></p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="custom-card">
-                        <div class="coord-circle">
-                            <img src="rashi garg.png" alt="Rashi Garg">
-                        </div>
-                        <h5>Rashi Garg</h5>
-                        <p class="text-danger small fw-bold"></p>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="section-title mt-5 mb-5">College <span class="text-white">Authorities</span></h2>
+            <h2 class="section-title mb-5">College <span class="text-white">Authorities</span></h2>
             <div class="row g-4 justify-content-center">
                 <!-- 1. Chairperson -->
                 <div class="col-md-4">
@@ -1330,6 +1572,38 @@
                             <h5>Dr.Anudeep Arora</h5>
                             <p class="text-warning small fw-bold">DIRECTOR</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title mt-5 mb-5">Fest <span class="text-white">Coordinators</span></h2>
+            <div class="row g-4 justify-content-center mb-5">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <div class="coord-circle">
+                            <img src="aryan kumar.png" alt="Aryan Kumar">
+                        </div>
+                        <h5>Aryan Kumar</h5>
+                        <p class="text-danger small fw-bold"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <div class="coord-circle">
+                            <img src="rashi garg.png" alt="Rashi Garg">
+                        </div>
+                        <h5>Rashi Garg</h5>
+                        <p class="text-danger small fw-bold"></p>
+                    </div>
+                </div>
+                <!-- 3. Sushant -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <div class="coord-circle">
+                            <img src="Sushant .png" alt="Sushant">
+                        </div>
+                        <h5>Sushant</h5>
+                        <p class="text-danger small fw-bold"></p>
                     </div>
                 </div>
             </div>
@@ -2231,8 +2505,8 @@
                     }
                 ],
                 coreTeam: [
-                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
-                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "", image: "ADD_IMAGE_PATH_1" },
+                    { name: "Preety <br> Vice President <br> ", image: "preety.png" },
                     { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
                     { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
                     { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
@@ -2816,9 +3090,78 @@
                 document.getElementById('secs').innerText = Math.floor((d % (1000 * 60)) / 1000);
             }
         }, 1000);
+        // ============================================
+        // Gallery Toggle
+        // ============================================
+        document.getElementById('toggleGallery').addEventListener('click', function () {
+            const morePhotos = document.getElementById('gallery-more');
+            const btnText = document.getElementById('btnText');
+            const button = this;
+
+            if (morePhotos.style.display === 'none' || morePhotos.style.display === '') {
+                morePhotos.style.display = 'block';
+                btnText.innerText = 'SHOW LESS';
+                button.classList.add('active');
+            } else {
+                morePhotos.style.display = 'none';
+                btnText.innerText = 'VIEW ALL PHOTOS';
+                button.classList.remove('active');
+                // Optional: Scroll back to gallery start
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        // ============================================
+        // Mobile Menu Auto-Close
+        // ============================================
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('mainNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, { toggle: false });
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => {
+                if (window.innerWidth < 992) {
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // ============================================
+        // Scroll To Top
+        // ============================================
+        const backToTop = document.createElement('div');
+        backToTop.innerHTML = '<i class="fa fa-arrow-up"></i>';
+        backToTop.style.cssText = `
+            position: fixed; bottom: 30px; right: 30px; 
+            width: 50px; height: 50px; background: var(--primary-red);
+            color: white; border-radius: 50%; display: flex; 
+            align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; transition: 0.4s;
+            z-index: 9999; box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        `;
+        document.body.appendChild(backToTop);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+
+        backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // ============================================
+        // Initialize AOS
+        // ============================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
     </script>
 </body>
 
 
 </html>
-
