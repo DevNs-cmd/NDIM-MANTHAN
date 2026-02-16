@@ -1024,6 +1024,150 @@
                 font-size: 1rem !important;
             }
         }
+
+        /* --- Venue Modal 3D Effects --- */
+        .venue-clickable {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+        }
+
+        .venue-clickable:hover {
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            background: #fff !important;
+        }
+
+        .venue-3d-card {
+            perspective: 1000px;
+            margin-bottom: 20px;
+        }
+
+        .venue-3d-card-inner {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            height: 100%;
+            position: relative;
+        }
+
+        .venue-3d-card:hover .venue-3d-card-inner {
+            transform: rotateY(15deg) rotateX(10deg) translateY(-10px);
+            border-color: rgba(255, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.12);
+        }
+
+        .venue-icon-3d {
+            font-size: 3.5rem;
+            color: var(--primary-red);
+            margin-bottom: 25px;
+            transform: translateZ(60px);
+            filter: drop-shadow(0 10px 10px rgba(255, 0, 0, 0.2));
+        }
+
+        .venue-title-3d {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            transform: translateZ(40px);
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .venue-address-3d {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 30px;
+            transform: translateZ(30px);
+            line-height: 1.6;
+        }
+
+        .btn-direction-3d {
+            transform: translateZ(50px);
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff !important;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-direction-3d:hover {
+            transform: translateZ(70px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        /* --- Authority 3D Cards --- */
+        .authority-3d-wrap {
+            perspective: 1000px;
+            height: 100%;
+        }
+
+        .authority-card-3d {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            background: #fff !important;
+            border: 1px solid #eee !important;
+            height: 100%;
+        }
+
+        .authority-card-3d:hover {
+            transform: rotateY(-8deg) rotateX(5deg) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+            border-color: var(--primary-red) !important;
+        }
+
+        .authority-card-3d .coord-circle {
+            transform: translateZ(40px);
+            transition: all 0.5s;
+        }
+
+        .authority-card-3d:hover .coord-circle {
+            transform: translateZ(70px) scale(1.05);
+            border-color: var(--primary-red);
+        }
+
+        .authority-card-3d h5 {
+            transform: translateZ(30px);
+            transition: all 0.5s;
+        }
+
+        .authority-card-3d p {
+            transform: translateZ(20px);
+            transition: all 0.5s;
+        }
+
+        @media (max-width: 768px) {
+            .authority-card-3d:hover {
+                transform: translateY(-5px);
+                /* Less tilt on mobile */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .venue-3d-card-inner {
+                padding: 30px 20px;
+            }
+
+            .venue-icon-3d {
+                font-size: 2.8rem;
+            }
+
+            .venue-title-3d {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 
@@ -1078,14 +1222,16 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="custom-card"><i class="fa fa-map-marker-alt text-danger fs-1 mb-3"></i>
-                        <h5>NDIM Campus</h5>
+                    <div class="custom-card venue-clickable" data-bs-toggle="modal" data-bs-target="#venueModal"
+                        style="cursor: pointer;">
+                        <i class="fa fa-map-marker-alt text-danger fs-1 mb-3"></i>
+                        <h5>VENUE</h5>
                         <p class="small text-secondary">VENUE</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="custom-card"><i class="fa fa-users text-danger fs-1 mb-3"></i>
-                        <h5>5,000+</h5>
+                        <h5>1k +</h5>
                         <p class="small text-secondary">EXPECTED FOOTFALL</p>
                     </div>
                 </div>
@@ -1131,50 +1277,59 @@
                 <div class="col-md-3">
                     <div class="custom-card">
                         <div class="coord-circle">
-                            <img src="https://i.pravatar.cc/150?u=Anand" alt="Dr. Anand Sharma">
+                            <img src="aryan kumar.png" alt="Aryan Kumar">
                         </div>
-                        <h5>Dr. Anand Sharma</h5>
-                        <p class="text-danger small fw-bold">FEST DIRECTOR</p>
+                        <h5>Aryan Kumar</h5>
+                        <p class="text-danger small fw-bold"></p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="custom-card">
                         <div class="coord-circle">
-                            <img src="https://i.pravatar.cc/150?u=Nidhi" alt="Prof. Nidhi Kapoor">
+                            <img src="rashi garg.png" alt="Rashi Garg">
                         </div>
-                        <h5>Prof. Nidhi Kapoor</h5>
-                        <p class="text-danger small fw-bold">CHIEF COORDINATOR</p>
+                        <h5>Rashi Garg</h5>
+                        <p class="text-danger small fw-bold"></p>
                     </div>
                 </div>
             </div>
 
             <h2 class="section-title mt-5 mb-5">College <span class="text-white">Authorities</span></h2>
             <div class="row g-4 justify-content-center">
+                <!-- 1. Chairperson -->
                 <div class="col-md-4">
-                    <div class="custom-card">
-                        <div class="coord-circle">
-                            <img src="anudeep.png" alt="Dr. R.K. Mittal">
+                    <div class="authority-3d-wrap">
+                        <div class="custom-card authority-card-3d">
+                            <div class="coord-circle">
+                                <img src="bindu.png" alt="Dr.Bindu">
+                            </div>
+                            <h5>Dr.Bindu</h5>
+                            <p class="text-warning small fw-bold">Chairperson</p>
                         </div>
-                        <h5>Dr.Anudeep Arora</h5>
-                        <p class="text-warning small fw-bold">DIRECTOR</p>
                     </div>
                 </div>
+                <!-- 2. Managing Director -->
                 <div class="col-md-4">
-                    <div class="custom-card">
-                        <div class="coord-circle">
-                            <img src="bindu.png" alt="Dr.Bindu">
+                    <div class="authority-3d-wrap">
+                        <div class="custom-card authority-card-3d">
+                            <div class="coord-circle">
+                                <img src="ayush.png" alt="Major Sandhu">
+                            </div>
+                            <h5>Dr. Ayush Kumar</h5>
+                            <p class="text-warning small fw-bold">Managing Director</p>
                         </div>
-                        <h5>Dr.Bindu</h5>
-                        <p class="text-warning small fw-bold">Chairperson</p>
                     </div>
                 </div>
+                <!-- 3. Director -->
                 <div class="col-md-4">
-                    <div class="custom-card">
-                        <div class="coord-circle">
-                            <img src="ayush.png" alt="Major Sandhu">
+                    <div class="authority-3d-wrap">
+                        <div class="custom-card authority-card-3d">
+                            <div class="coord-circle">
+                                <img src="anudeep.png" alt="Dr. R.K. Mittal">
+                            </div>
+                            <h5>Dr.Anudeep Arora</h5>
+                            <p class="text-warning small fw-bold">DIRECTOR</p>
                         </div>
-                        <h5>Dr. Ayush Kumar</h5>
-                        <p class="text-warning small fw-bold">Managing Director</p>
                     </div>
                 </div>
             </div>
@@ -1394,11 +1549,94 @@
         </div>
     </div>
 
+    <!-- Venue Selection Modal -->
+    <div class="modal fade" id="venueModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg"
+                style="border-radius: 30px; overflow: hidden; background: #fff !important;">
+                <div class="modal-header border-0 pb-0" style="background: transparent;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="position: absolute; right: 25px; top: 25px; z-index: 10;"></button>
+                </div>
+                <div class="modal-body p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <span class="text-danger fw-bold text-uppercase small letter-spacing-2">Event Locations</span>
+                        <h2 class="fw-bold text-dark mt-2"
+                            style="font-family: 'Oswald', sans-serif; font-size: 2.5rem;">MANTHAN <span
+                                class="text-danger">VENUES</span></h2>
+                        <div class="mx-auto bg-danger mt-2" style="height: 4px; width: 60px; border-radius: 2px;"></div>
+                    </div>
+
+                    <div class="row g-4">
+                        <!-- Card 1: NDIM Campus -->
+                        <div class="col-md-6">
+                            <div class="venue-3d-card h-100">
+                                <div class="venue-3d-card-inner text-center">
+                                    <div class="venue-icon-3d">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <h4 class="venue-title-3d">VENUE</h4>
+                                    <p class="venue-address-3d" style="color: #666 !important;">50 & 60 (B&C, 50B,
+                                        Mehrauli - Badarpur Rd, behind Batra Hospital,<br>Tughlakabad Institutional
+                                        Area, Vayusenabad, New Delhi, 110062</p>
+                                    <a href="https://www.google.com/maps/place/NDIM+-+New+Delhi+Institute+of+Management/@28.5136029,77.243265,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce175a84f0d23:0x12f178d21ded2f5e!8m2!3d28.5136029!4d77.243265!16s%2Fm%2F0k0pkbv?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+                                        target="_blank" class="btn btn-direction-3d">
+                                        <i class="fa fa-location-arrow me-2"></i>GET DIRECTIONS
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2: Shri Satya Sai Auditorium -->
+                        <div class="col-md-6">
+                            <div class="venue-3d-card h-100">
+                                <div class="venue-3d-card-inner text-center">
+                                    <div class="venue-icon-3d">
+                                        <i class="fa fa-masks-theater"></i>
+                                    </div>
+                                    <h4 class="venue-title-3d">SHRI SATYA SAI AUDITORIUM</h4>
+                                    <p class="venue-address-3d" style="color: #666 !important;">Bhishma Pitamah Marg,
+                                        Pragati Vihar,<br>Lodhi Road, New Delhi, 110003</p>
+                                    <a href="https://www.google.com/maps/dir//Shri+Satya+Sai+Auditorium,+Bhishma+Pitamah+Marg,+Pragati+Vihar,+New+Delhi,+Delhi+110003/@28.5851412,77.2346747,17z"
+                                        target="_blank" class="btn btn-direction-3d">
+                                        <i class="fa fa-location-arrow me-2"></i>GET DIRECTIONS
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-muted small mt-5 mb-0">Note: Please check your event schedule for the
+                        specific venue location.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         AOS.init();
+
+        // --- Dynamic 3D Tilt Effect for Venue Cards ---
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.venue-3d-card-inner');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (centerY - y) / 10;
+                    const rotateY = (x - centerX) / 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) translateZ(20px)`;
+                } else {
+                    card.style.transform = '';
+                }
+            });
+        });
 
         // ============================================
         // MASTER DATA OBJECT - Edit placeholder values
@@ -1533,61 +1771,65 @@
                 ],
                 coreTeam: [
                     { name: "Anupriya Jaiswal <br> President", image: "anupriya.png" },
-                    { name: "Sunidhi Sharma <br> Vice-President", image: "ADD_IMAGE_PATH_2" },
+                    { name: "Sunidhi Sharma <br> Vice-President", image: "sunidhi.png" },
                     { name: "Dev N Suman <br> Secretary", image: "Dev.png" },
                     { name: "Noor Askha Akhtar <br> Documentation Head", image: "noor.png" },
                     { name: "Krati Verma <br> Social Media Head", image: "krati.png" },
                     { name: "Raini Negi <br> Event Head ", image: "raini.png" },
+                    { name: "Nishant Panjawani <br> Club Photography ", image: "nishant.png" },
                 ]
             },
             {
-                clubName: "NSS",
-                society: "NSS",
-                icon: "fa-person-rays",
-                eventTitle: "Dance Battle",
-                description: "NSS (National Service Scheme) at NDIM fosters social responsibility through community engagement and cultural expression. Our flagship 'Dance Battle' brings together teams to showcase their talent while promoting social harmony.",
+                clubName: "Catalyst-HR Club",
+                society: "HR CLUB",
+                icon: "fa-users-gear",
+                eventTitle: "HR Mystery Hunt - Tag Team Challenge",
+                description: "To solve all HR case studies accurately by following location hints and completing the hunt in the shortest possible time. Themes include workplace conflict, hiring ethics, and employee engagement.",
                 date: "17 March 2026",
-                venue: "Main Stage / Amphitheatre",
-                eligibility: "College Students",
-                deadline: "10 March 2026",
-                prizes: "Trophy + Cash Prizes. Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
-                contact: "Secretary - (9876543210) <br> Event Head - (8765432109)",
+                venue: "NDIM Campus",
+                eligibility: "Teams of 2-4 members",
+                deadline: "TBA",
+                prizes: "Winners will be rewarded with attractive cash prizes.",
+                contact: "MOKSHIT President <br> 9953903810 <br> HARSHIT Vice President <br> 7827867278",
                 internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
-                rules: ["Respect all performers.", "Follow the time limit.", "Musical tracks must be submitted 2 days prior."],
-                socials: { instagram: "https://instagram.com/nss_ndim", linkedin: "https://linkedin.com/company/nss-ndim" },
+                rules: [
+                    "Each team must have minimum 2 and maximum 4 members.",
+                    "Only one member (runner) from each team is allowed to go to the location at a time.",
+                    "The remaining members must stay at the base and solve the case study.",
+                    "The runner must return with the case study before the team can begin solving.",
+                    "Teams will receive the next location hint only after submitting the correct solution.",
+                    "A different member must run for each round (tag system mandatory).",
+                    "Use of mobile phones or internet is strictly prohibited once game starts.",
+                    "No outside help is permitted.",
+                    "Any form of cheating, misbehavior, or misconduct will lead to immediate disqualification.",
+                    "Teams must stay within the designated event area.",
+                    "The organizers' decision will be final and binding.",
+                    "Registration fees: ₹50 single person, ₹100 for more than 2 members."
+                ],
+                socials: { instagram: "https://instagram.com/catalyst_ndim", linkedin: "https://linkedin.com/company/catalyst-ndim" },
                 events: [
                     {
-                        name: "DHURALA: THE DANCE BATTLE",
-                        description: "An electrifying dance competition where teams battle it out with high-energy performances. Show your moves and win the crowd!",
+                        name: "HR Mystery Hunt - Tag Team Challenge",
+                        description: "Game Flow: Teams receive a location hint -> Runner collects case study -> Team solves case study -> Solution approval gives next hint -> Process repeats until all case studies completed.",
                         date: "17 March 2026",
-                        venue: "Main Stage",
-                        eligibility: "Teams of 4-12 members",
-                        deadline: "10 March 2026",
-                        prizes: "Cash Prize + Certificates. Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
-                        internalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
-                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
-                        rules: ["Time Limit: 5-8 minutes", "Props are allowed but must be cleared after use.", "Judging based on choreography and energy."]
-                    },
-                    {
-                        name: "SOCIALLY RADIANT: STREET PLAY",
-                        description: "A street play (Nukkad Natak) competition focused on social awareness and community impact.",
-                        date: "17 March 2026",
-                        venue: "NDIM Corridor",
-                        eligibility: "College Students",
-                        deadline: "10 March 2026",
-                        prizes: "Exciting Rewards. Details in <a href='#' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        venue: "NDIM Campus",
+                        eligibility: "Teams of 2-4 members",
+                        deadline: "TBA",
+                        prizes: "Attractive Cash Prizes",
                         internalLink: "#",
-                        externalLink: "#",
-                        rules: ["Maximum 15 participants.", "Focus on social issues.", "Only live instruments allowed."]
+                        externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
+                        rules: [
+                            "<h6>Team Structure</h6>- Each team must have minimum 2 and maximum 4 members.<br>- Only one member (runner) from each team is allowed to go to the location at a time.<br>- Remaining members stay at the base to solve the case study.<br>- A different member must run for each round (tag system mandatory).",
+                            "<h6>Case Study Themes</h6>- Workplace conflict resolution<br>- Hiring bias and recruitment ethics<br>- Employee motivation and engagement<br>- Engagement performance<br>- Management Workplace harassment",
+                            "<h6>Objective</h6>To solve all HR case studies accurately by following location hints and completing the hunt in the shortest possible time.",
+                            "<h6>Reg Fees & Rewards</h6>- Fee: ₹50 single person, ₹100 for more than 2.<br>- Attractive cash prizes for winners."
+                        ]
                     }
                 ],
                 coreTeam: [
-                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
-                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
-                    { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
-                    { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
-                    { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
+                    { name: "Mokshit <br> President", image: "mokshit.png" },
+                    { name: "Harshit <br> Vice President", image: ".png" }
                 ]
             },
             {
@@ -1600,7 +1842,7 @@
                 date: "16th & 17th March, 2026",
                 venue: " NDIM Campus",
                 eligibility: "College Students",
-                deadline: "ADD_DEADLINE",
+                deadline: "10 March 2026",
                 prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                 contact: "President: Sonam Grover <br>( 8595511581) <br> PR Head: Yashi Jain <br>(9876543214)",
                 internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
@@ -1631,20 +1873,23 @@
                     {
                         name: "ADAKAAR: THE MONO ACT COMPETITION",
                         description: "A Stage to Showcase Your Solo Brilliance <br> Unleash your acting skills and bring your monologues to life! This is your chance to shine as a solo performer and leave the audience spellbound.<h6>Event Highlights</h6>- Perform a monologue of your choice <br>- Showcase your acting talent and versatility<br>- Engaging storytelling and emotional depth<br>- Opportunity to win exciting prizes.<br>Showcase Your Talent! <br>Bring your passion for acting.",
-                        date: "Date",
-                        venue: "Venue",
-                        eligibility: "Eligibility",
-                        deadline: "Deadline",
-                        prizes: "Details in <a href='#' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        date: "17 March 2026",
+                        venue: "Auditorium / Stage 2",
+                        eligibility: "Solo Performers",
+                        deadline: "12 March 2026",
+                        prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
-                        rules: ["<h6>Performance Rules: </h6> - Only one participant is allowed on stage during the performance.  ", "- Each participant is permitted one helper for makeup and background music.", "  - The act can be performed in English, Hindi, or a bilingual format. "
-                            , "<h6>Time Limit:</h6>  - The performance must be within 3 to 5 minutes. ", "- Points will be deducted for exceeding the time limit. ",
+                        rules: [
+                            "<h6>Performance Rules: </h6> - Only one participant is allowed on stage during the performance.  ",
+                            "- Each participant is permitted one helper for makeup and background music.",
+                            "  - The act can be performed in English, Hindi, or a bilingual format. ",
+                            "<h6>Time Limit:</h6>  - The performance must be within 3 to 5 minutes. ",
+                            "- Points will be deducted for exceeding the time limit. ",
                             "<h6>Prohibited Materials:</h6>-  - The use of  fluids, live animals, flames, heavy objects, or any material that could potentially damage the stage is strictly prohibited.",
                             "<h6>Content Guidelines:</h6> - Any inappropriate content or vulgarity will not be tolerated. ",
                             "<h6>Judgment and Decision:</h6> -  - The decision of the organizers and judges will be final and binding. ",
-
-                            "<h6>Registration Fees and Prizes:</h6> - Registration fee:150 per participant.<br> - Attractive cash prizes will be awarded to the winners.",
+                            "<h6>Registration Fees and Prizes:</h6> - Registration fee: 150 per participant.<br> - Attractive cash prizes will be awarded to the winners.",
                             "<h5> Note: </h5>Ensure adherence to the rules to maintain the spirit of the competition and avoid disqualification."
                         ]
                     }
@@ -1697,39 +1942,39 @@
                     },
                     {
                         name: "ROCK RACKATHON (BATTLE OF BANDS) ",
-                        description: "“One Stage, Countless Bands, Endless Energy – Letthe Battle Begin!” A rocking showcase of talent where rhythms unite and bands battle it out join the ultimate band showcase.",
-                        date: "Date",
-                        venue: "Venue",
-                        eligibility: "Eligibility",
-                        deadline: "Deadline",
-                        prizes: "Details in <a href='#' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        description: "“One Stage, Countless Bands, Endless Energy – Let the Battle Begin!” A rocking showcase of talent where rhythms unite and bands battle it out join the ultimate band showcase.",
+                        date: "16 March 2026",
+                        venue: "Main Stage",
+                        eligibility: "College Student Bands",
+                        deadline: "10 March 2026",
+                        prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
                         rules: ["Minimum number of participants in a team is 4 and maximum 10.", "Maximum of 5 accompanists allowed.", "Time Limit: Minimum 15 minutes; Maximum 20 minutes", "Each band can perform eastern / western or both.", "Use of prerecorded music (e.g. sequences, keyboardrhythm, guitar loops) will result in disqualification.", "INSTRUMENTS PROVIDED BY THE ORGANIZERS:DRUM KIT (Excluding drumsticks)", "Judgment will be based on musical coordination,originality, , instrumental control, stage presence andoverall performance.", "Registration Fees - Rs. 500 per band"]
                     },
                     {
                         name: "SWAR SANGAM (GROUP SINGING INDIAN)",
-                        description: "Voices in sync,music that links,watch groups create musical bliss and experience the voices blendingand creating a magic together",
-                        date: "Date",
-                        venue: "Venue",
+                        description: "Voices in sync, music that links, watch groups create musical bliss and experience the voices blending and creating a magic together",
+                        date: "17 March 2026",
+                        venue: "Stage 2",
                         eligibility: "All college students",
-                        deadline: "Deadline",
-                        prizes: "Details in <a href='#' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        deadline: "10 March 2026",
+                        prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
                         rules: ["Minimum number of participants in a team is 6 and maximum 12.", "Maximum of 4 accompanists allowede", "Time Limit: Minimum 6 minutes; Maximum 10 minutes (including stage set up).", "Only Indian songs are allowed (Classical / Semi-Classical / Folk / Bhajan / Bollywood / Filmy & Non-Filmy).", "Live instruments are allowed.", "Judgment will be based on quality of singing, harmony,coordination, rhythm, taal, expression and overall group performance.", "No vulgar or inappropriate lyrics are allowed.", "No prerecorded vocals will be allowed.", "Registration Fees - Rs. 500"]
                     },
                     {
                         name: " SWAR SMRITI (INDIAN SOLO SINGING)",
-                        description: "Event Description",
-                        date: "Date",
-                        venue: "Venue",
+                        description: "Showcase your vocal prowess in the traditional Indian style. Let your melody touch the soul.",
+                        date: "17 March 2026",
+                        venue: "Room 101",
                         eligibility: "All college students",
-                        deadline: "Deadline",
-                        prizes: "Details in <a href='#' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        deadline: "10 March 2026",
+                        prizes: "Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
-                        rules: ["Only one participant per registeration is allowed.", "Maximum of two accompanists are allowedRule", "<h6> Time Duration:<h6>", "(Karaoke track / live instrument allowed", "Only Indian music is allowed (Classical / Semi-classical", "Judges will evaluate on: Voice control & clarity Swara &sur (pitch accuracy) Rhythm (taal & laya) Expression &bhaav Stage presence", "<h6>Overall musical impact <h6>", "Participants must report on time and follow stage instructions.", "Registration Fees - Rs. 100"]
+                        rules: ["Only one participant per registeration is allowed.", "Maximum of two accompanists are allowedRule", "<h6> Time Duration: 5 mins<h6>", "(Karaoke track / live instrument allowed", "Only Indian music is allowed (Classical / Semi-classical", "Judges will evaluate on: Voice control & clarity Swara &sur (pitch accuracy) Rhythm (taal & laya) Expression &bhaav Stage presence", "<h6>Overall musical impact <h6>", "Participants must report on time and follow stage instructions.", "Registration Fees - Rs. 100"]
                     }
 
 
@@ -1745,7 +1990,13 @@
                     { name: "khushi  <br> Classical head", image: "khushi .png" },
                     { name: "Sushant  <br> PR Head", image: "Sushant .png" },
                     { name: " Vanshika Goyal <br> Social media head", image: "Vanshika Goyal.png" },
-                    { name: "  <br> Production Head", image: "Production Head.png" }
+                    { name: "  <br> Production Head", image: "Production Head.png" },
+                    { name: " Aryan Kumar <br>Documentation head", image: "aryan.jpg" }
+
+
+
+
+
 
 
 
@@ -1938,45 +2189,45 @@
                 ]
             },
             {
-                clubName: "Catalyst-HR Club",
-                society: "GAMING SOCIETY",
-                icon: "fa-gamepad",
-                eventTitle: "BGMI Tournament",
-                description: "Catalyst-HR Club brings the adrenaline-pumping world of competitive gaming to NDIM. Our tournaments are designed to test strategy, reflexes, and teamwork across popular e-sports titles.",
-                date: "16-17 March 2026",
-                venue: "Digital Hub / Lab 2",
+                clubName: "Bulls N Bear - The Finance Club",
+                society: "NSS",
+                icon: "fa-person-rays",
+                eventTitle: "Dance Battle",
+                description: "The finance Club of NDIM",
+                date: "17 March 2026",
+                venue: "Main Stage / Amphitheatre",
                 eligibility: "College Students",
-                deadline: "12 March 2026",
-                prizes: "Cash Prizes + Gaming Gear. Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
-                contact: "Gaming Coordinator - (9700000000)",
+                deadline: "10 March 2026",
+                prizes: "Trophy + Cash Prizes. Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                contact: "Secretary - (9876543210) <br> Event Head - (8765432109)",
                 internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
-                rules: ["No cheating/hacking.", "Bring your own peripherals if preferred.", "Standard tournament rules apply."],
-                socials: { instagram: "https://instagram.com/catalyst_ndim", linkedin: "https://linkedin.com/company/catalyst-ndim" },
+                rules: ["Respect all performers.", "Follow the time limit.", "Musical tracks must be submitted 2 days prior."],
+                socials: { instagram: "https://instagram.com/nss_ndim", linkedin: "https://linkedin.com/company/nss-ndim" },
                 events: [
                     {
-                        name: "BGMI MOBILE OPEN",
-                        description: "The ultimate battle royale! Squad up and fight for the chicken dinner in our high-stakes BGMI tournament.",
-                        date: "16 March 2026",
-                        venue: "Lab 2",
-                        eligibility: "Squads of 4",
-                        deadline: "12 March 2026",
-                        prizes: "₹5000 Pool + Certificates",
-                        internalLink: "#",
+                        name: "DHURALA: THE DANCE BATTLE",
+                        description: "An electrifying dance competition where teams battle it out with high-energy performances. Show your moves and win the crowd!",
+                        date: "17 March 2026",
+                        venue: "Main Stage",
+                        eligibility: "Teams of 4-12 members",
+                        deadline: "10 March 2026",
+                        prizes: "Cash Prize + Certificates. Details in <a href='https://drive.google.com/file/d/1qV4Cy2Z90A0Pe2SpnvPFGYLkzyiHt8AA/view?usp=sharing' target='_blank' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
+                        internalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                         externalLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
-                        rules: ["Mobile only (no emulators).", "Point system: WWCD + Kills.", "All maps will be rotated."]
+                        rules: ["Time Limit: 5-8 minutes", "Props are allowed but must be cleared after use.", "Judging based on choreography and energy."]
                     },
                     {
-                        name: "FIFA/FC 25 SHOWDOWN",
-                        description: "Compete in the most popular football simulation game and prove your skills on the virtual pitch.",
+                        name: "SOCIALLY RADIANT: STREET PLAY",
+                        description: "A street play (Nukkad Natak) competition focused on social awareness and community impact.",
                         date: "17 March 2026",
-                        venue: "Gaming Lounge",
-                        eligibility: "Solo Participants",
-                        deadline: "12 March 2026",
-                        prizes: "Gaming Accessories + Goodies",
+                        venue: "NDIM Corridor",
+                        eligibility: "College Students",
+                        deadline: "10 March 2026",
+                        prizes: "Exciting Rewards. Details in <a href='#' style='color:#ff0000; text-decoration:underline;'>Rulebook</a>",
                         internalLink: "#",
                         externalLink: "#",
-                        rules: ["Standard 6-min halves.", "Legendary difficulty.", "Single elimination bracket."]
+                        rules: ["Maximum 15 participants.", "Focus on social issues.", "Only live instruments allowed."]
                     }
                 ],
                 coreTeam: [
