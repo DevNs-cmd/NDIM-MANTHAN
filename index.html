@@ -983,22 +983,55 @@
             }
         }
 
-        .brochure-btn.pulse {
-            animation: brochurePulse 2s infinite;
-        }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .brochure-btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+        min-width: 180px;
+    }
+}
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .brochure-btn {
-                padding: 10px 20px;
-                font-size: 0.8rem;
-                min-width: 180px;
-            }
-        }
+/* Additional responsive styles for brochure buttons in modals */
+@media (max-width: 576px) {
+    .brochure-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        min-width: 150px;
+        margin-bottom: 8px;
+    }
+    
+    .brochure-btn i {
+        font-size: 1rem;
+    }
+    
+    /* Stack buttons vertically on very small screens */
+    #detailModal .modal-footer .row.g-2 {
+        flex-direction: column;
+    }
+    
+    #detailModal .modal-footer .col-6 {
+        width: 100% !important;
+        margin-bottom: 8px;
+    }
+    
+    #eventDetailsModal .row.justify-content-center {
+        flex-direction: column;
+    }
+    
+    #eventDetailsModal .col-md-5 {
+        width: 100% !important;
+        margin-bottom: 8px;
+    }
+}
 
-        /* --- Responsive Event Details Adjustments --- */
-        #eventDetailsBody {
-            overflow-x: hidden;
+@media (min-width: 577px) and (max-width: 768px) {
+    .brochure-btn {
+        padding: 9px 18px;
+        font-size: 0.78rem;
+        min-width: 165px;
+    }
+}
         }
 
         #eventDetailsModal .custom-card {
