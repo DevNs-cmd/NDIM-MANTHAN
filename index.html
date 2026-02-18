@@ -975,63 +975,65 @@
             0% {
                 box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
             }
+
             50% {
                 box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3), 0 0 0 10px rgba(255, 0, 0, 0.1);
             }
+
             100% {
                 box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3), 0 0 0 10px rgba(255, 0, 0, 0.1), 0 0 0 20px rgba(255, 0, 0, 0.05);
             }
         }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .brochure-btn {
-        padding: 10px 20px;
-        font-size: 0.8rem;
-        min-width: 180px;
-    }
-}
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .brochure-btn {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                min-width: 180px;
+            }
+        }
 
-/* Additional responsive styles for brochure buttons in modals */
-@media (max-width: 576px) {
-    .brochure-btn {
-        padding: 8px 16px;
-        font-size: 0.75rem;
-        min-width: 150px;
-        margin-bottom: 8px;
-    }
-    
-    .brochure-btn i {
-        font-size: 1rem;
-    }
-    
-    /* Stack buttons vertically on very small screens */
-    #detailModal .modal-footer .row.g-2 {
-        flex-direction: column;
-    }
-    
-    #detailModal .modal-footer .col-6 {
-        width: 100% !important;
-        margin-bottom: 8px;
-    }
-    
-    #eventDetailsModal .row.justify-content-center {
-        flex-direction: column;
-    }
-    
-    #eventDetailsModal .col-md-5 {
-        width: 100% !important;
-        margin-bottom: 8px;
-    }
-}
+        /* Additional responsive styles for brochure buttons in modals */
+        @media (max-width: 576px) {
+            .brochure-btn {
+                padding: 8px 16px;
+                font-size: 0.75rem;
+                min-width: 150px;
+                margin-bottom: 8px;
+            }
 
-@media (min-width: 577px) and (max-width: 768px) {
-    .brochure-btn {
-        padding: 9px 18px;
-        font-size: 0.78rem;
-        min-width: 165px;
-    }
-}
+            .brochure-btn i {
+                font-size: 1rem;
+            }
+
+            /* Stack buttons vertically on very small screens */
+            #detailModal .modal-footer .row.g-2 {
+                flex-direction: column;
+            }
+
+            #detailModal .modal-footer .col-6 {
+                width: 100% !important;
+                margin-bottom: 8px;
+            }
+
+            #eventDetailsModal .row.justify-content-center {
+                flex-direction: column;
+            }
+
+            #eventDetailsModal .col-md-5 {
+                width: 100% !important;
+                margin-bottom: 8px;
+            }
+        }
+
+        @media (min-width: 577px) and (max-width: 768px) {
+            .brochure-btn {
+                padding: 9px 18px;
+                font-size: 0.78rem;
+                min-width: 165px;
+            }
+        }
         }
 
         #eventDetailsModal .custom-card {
@@ -1856,9 +1858,8 @@
                 <div class="modal-footer border-0 p-4">
                     <div class="row g-2 w-100">
                         <div class="col-6">
-                            <a href="https://drive.google.com/file/d/1KyEASbiRSytf-_MxBi9W0cZB0ngQzjom/view?usp=drivesdk" 
-                               target="_blank" 
-                               class="brochure-btn w-100">
+                            <a href="https://drive.google.com/file/d/1KyEASbiRSytf-_MxBi9W0cZB0ngQzjom/view?usp=drivesdk"
+                                target="_blank" class="brochure-btn w-100">
                                 <i class="fa fa-book"></i>
                                 <span>View Brochure</span>
                             </a>
@@ -2239,7 +2240,7 @@
                     { name: "Krish Gera <br> Social Media Co-Head ", image: "krish.png" },
                     { name: "Subham Rawat <br> Student coordinator", image: "subhum.png" },
                     { name: "Tushar <br> Social Media Head", image: "tushar.png" },
-                    
+
 
 
 
@@ -2397,14 +2398,14 @@
                     { name: "Prachi badoni <br> President", image: "Prachi badoni.png" },
                     { name: "Priya Verma  <br> Vice-President", image: "Priya Verma .png" },
                     { name: " <br>Secretary", image: "Secretary.png" },
-                    { name: "shubham <br> Instrumental head", image: "shubham.png" },
-                    { name: "baani Bharti <br> Western head", image: "baani Bharti.png" },
+                    { name: "shubham <br> Instrumental head", image: "shubham music.png" },
+                    { name: "baani Bharti <br> Western head", image: "baani Bharti music.png" },
                     { name: "Dolesh Batra <br> Classical head", image: "Dolesh Batra.png" },
-                    { name: "khushi  <br> Classical head", image: "khushi.png" },
+                    { name: "khushi  <br> Classical head", image: "khushi music.png" },
                     { name: "Sushant  <br> PR Head", image: "Sushant .png" },
                     { name: " Vanshika Goyal <br> Social media head", image: "Vanshika Goyal.png" },
                     { name: "  <br> Production Head", image: "Production Head.png" },
-                    { name: " Aryan Kumar <br>Documentation head", image: "aryan.jpg" }
+                    { name: " Aryan Kumar <br>Documentation head", image: "aryan kumar.png" }
 
 
 
@@ -2658,7 +2659,7 @@
                 icon: "fa-palette",
                 eventTitle: "Sketch Battle",
                 description: "Meraki is the fine arts society of NDIM, dedicated to the beauty of hand-drawn art, sketching, and traditional painting. We believe every stroke tells a story and every color hides a dream.",
-                date: "16 March 2026",
+                date: "17March 2026",
                 venue: "NDIM Corridor B",
                 eligibility: "College Students",
                 deadline: "10 March 2026",
@@ -2853,8 +2854,8 @@
                 ]
             },
             {
-                clubName: "CGI",
-                society: "ROBOTICS SOCIETY",
+                clubName: "CGI-Centre for Green Initiatives ",
+                society: "Centre for Green Initiatives ",
                 icon: "fa-robot",
                 eventTitle: "Robo Race",
                 description: "The Robotics Club of NDIM is a playground for future engineers and tech enthusiasts. We build, program, and compete with robots to solve complex challenges.",
@@ -2863,7 +2864,7 @@
                 eligibility: "Tech Students",
                 deadline: "10 March 2026",
                 prizes: "Robotics Kits + Certs + Cash. Details in <a href='https://drive.google.com/file/d/1KyEASbiRSytf-_MxBi9W0cZB0ngQzjom/view?usp=drivesdk' target='_blank' style='color:#ff0000; text-decoration:underline;'>Brochure</a>",
-                contact: "Robo Lead - (9200000000)",
+                contact: "",
                 internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Robots must meet size/weight specs.", "Safety protocols are mandatory.", "On-spot tinkering allowed within limits."],
