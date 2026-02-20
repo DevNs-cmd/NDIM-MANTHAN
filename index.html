@@ -74,15 +74,16 @@
 
         /* --- Hero Section --- */
         #home {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-                url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070');
+            height: calc(100vh - 80px);
+            margin-top: 80px;
+            background: url('poster.png');   
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            position: relative;
         }
 
         .main-title {
@@ -573,23 +574,13 @@
 
             /* Hero Section */
             #home {
+                height: calc(100vh - 70px);
+                margin-top: 70px;
                 padding: 80px 15px;
                 min-height: 100vh;
             }
 
             .hero-subtext {
-                font-size: 0.7rem;
-                letter-spacing: 2px;
-            }
-
-            .main-title {
-                font-size: clamp(2.5rem, 15vw, 4rem);
-            }
-
-            /* Sections */
-            .section-padding {
-                padding: 60px 0;
-            }
 
             .section-title {
                 font-size: clamp(2.2rem, 10vw, 3rem);
@@ -1501,9 +1492,9 @@
 
     <section id="home">
         <div class="container" data-aos="zoom-out">
-            <p class="hero-subtext">NDIM - GGSIP UNIVERSITY PRESENTS</p>
+            <!-- <p class="hero-subtext">NDIM - GGSIP UNIVERSITY PRESENTS</p>
             <h1 class="main-title">MANTHAN-26</h1>
-            <p class="h4 text-light fw-light">Annual Cultural & Technical Fest</p>
+            <p class="h4 text-light fw-light">Annual Cultural & Technical Fest</p> --> 
             <!-- <div class="d-flex justify-content-center gap-3 my-5">
                 <div class="timer-box"><span id="days">30</span><label>Days</label></div>
                 <div class="timer-box"><span id="hours">17</span><label>Hours</label></div>
@@ -1524,7 +1515,7 @@
             <div class="row g-4" data-aos="fade-up">
                 <div class="col-lg-3 col-sm-6">
                     <div class="custom-card"><i class="fa fa-calendar-alt text-danger fs-1 mb-3"></i>
-                        <h5>15-16 March 2026</h5>
+                        <h5>16-18 March 2026</h5>
                         <p class="small text-secondary">DATE</p>
                     </div>
                 </div>
@@ -1538,7 +1529,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="custom-card"><i class="fa fa-users text-danger fs-1 mb-3"></i>
-                        <h5>1k +</h5>
+                        <h5>2000 +</h5>
                         <p class="small text-secondary">EXPECTED FOOTFALL</p>
                     </div>
                 </div>
@@ -1574,7 +1565,7 @@
                             <div class="overlay">
                                 <div class="overlay-content">
                                     <!-- <span>CONCERT NIGHT</span> -->
-                                    <i class="fa fa-expand"></i>
+                                    <i class="fa fa-expand"></i> 
                                 </div>
                             </div>
                         </div>
@@ -1799,7 +1790,7 @@
                         <div class="col-6">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-clock detail-icon me-3"></i>
-                                <div><small class="text-secondary d-block">DATE</small><span class="small">16 March
+                                <div><small class="text-secondary d-block">DATE</small><span class="small"> 16 - 18 March
                                         2026</span></div>
                             </div>
                             <div class="d-flex align-items-center mb-3">
@@ -1809,7 +1800,7 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-calendar-check detail-icon me-3"></i>
-                                <div><small class="text-secondary d-block">DEADLINE</small><span class="small">12 March
+                                <div><small class="text-secondary d-block">DEADLINE</small><span class="small">NA
                                         2026</span></div>
                             </div>
                         </div>
@@ -1979,10 +1970,9 @@
                                     <div class="venue-icon-3d">
                                         <i class="fa fa-university"></i>
                                     </div>
-                                    <h4 class="venue-title-3d">VENUE</h4>
-                                    <p class="venue-address-3d" style="color: #666 !important;">50 & 60 (B&C, 50B,
-                                        Mehrauli - Badarpur Rd, behind Batra Hospital,<br>Tughlakabad Institutional
-                                        Area, Vayusenabad, New Delhi, 110062</p>
+                                    <h4 class="venue-title-3d">NDIM ( NEW DELHI INSTITUTE OF MANAGEMENT ) </h4>
+                                    <p class="venue-address-3d" style="color: #666 !important;">Behind Batra Hospital,<br>Tughlakabad Institutional
+                                        Area, Vayusenabad, New Delhi, 110062 <br><br> Date : 16 - 17 March 2026  </p>
                                     <a href="https://www.google.com/maps/place/NDIM+-+New+Delhi+Institute+of+Management/@28.5136029,77.243265,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce175a84f0d23:0x12f178d21ded2f5e!8m2!3d28.5136029!4d77.243265!16s%2Fm%2F0k0pkbv?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
                                         target="_blank" class="btn btn-direction-3d">
                                         <i class="fa fa-location-arrow me-2"></i>GET DIRECTIONS
@@ -1995,12 +1985,12 @@
                             <div class="venue-3d-card h-100">
                                 <div class="venue-3d-card-inner text-center">
                                     <div class="venue-icon-3d">
-                                        <i class="fa fa-masks-theater"></i>
+                                        <i class="fa fa-graduation-cap"></i>
                                     </div>
-                                    <h4 class="venue-title-3d">SHRI SATYA SAI AUDITORIUM</h4>
-                                    <p class="venue-address-3d" style="color: #666 !important;">Bhishma Pitamah Marg,
-                                        Pragati Vihar,<br>Lodhi Road, New Delhi, 110003</p>
-                                    <a href="https://www.google.com/maps/dir//Shri+Satya+Sai+Auditorium,+Bhishma+Pitamah+Marg,+Pragati+Vihar,+New+Delhi,+Delhi+110003/@28.5851412,77.2346747,17z"
+                                    <h4 class="venue-title-3d">SHRI SATHYA SAI AUDITORIUM</h4>
+                                    <p class="venue-address-3d" style="color: #666 !important;">Auditorium ,Bhishma Pitamah Marg,
+                                        Pragati Vihar,<br>Lodhi Road, New Delhi, 110003  <br><br> Date : 18 March 2026</p>
+                                    <a href="https://www.google.com/maps/dir//Sri+Sathya+Sai+Auditorium,+Gate+No:+3,+AUDITORIUM,+Lodhi+Rd,+Pragati+Vihar,+New+Delhi,+Delhi+110003/@28.5868032,77.2079616,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x390ce2ed938e936f:0x2a6de094a30c5a5f!2m2!1d77.2305437!2d28.5876136?entry=ttu&g_ep=EgoyMDI2MDIxNy4wIKXMDSoASAFQAw%3D%3D"
                                         target="_blank" class="btn btn-direction-3d">
                                         <i class="fa fa-location-arrow me-2"></i>GET DIRECTIONS
                                     </a>
@@ -2544,8 +2534,8 @@
                     }
                 ],
                 coreTeam: [
-                    { name: "ADD_NAME_1", image: "ADD_IMAGE_PATH_1" },
-                    { name: "ADD_NAME_2", image: "ADD_IMAGE_PATH_2" },
+                    { name: "Raini Negi", image: "raini.png" },
+                    { name: "Manas Joshi", image: "ADD_IMAGE_PATH_2" },
                     { name: "ADD_NAME_3", image: "ADD_IMAGE_PATH_3" },
                     { name: "ADD_NAME_4", image: "ADD_IMAGE_PATH_4" },
                     { name: "ADD_NAME_5", image: "ADD_IMAGE_PATH_5" }
