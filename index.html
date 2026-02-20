@@ -72,71 +72,140 @@
             color: var(--primary-red) !important;
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section Redesign --- */
         #home {
-            height: calc(100vh - 80px);
-            margin-top: 80px;
-            background: url('poster.png');   
-            background-size: cover;
-            background-position: center;
+            min-height: 100vh;
+            margin-top: 0;
+            padding-top: 80px;
+            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             position: relative;
-            background-repeat: no-repeat;
+            overflow: hidden;
         }
 
-        /* Mobile Hero Section - Make poster.png visible without compression */
-        @media (max-width: 768px) {
-            #home {
-                background-size: 100% auto;
-                background-position: top center;
-                min-height: 60vh;
-                height: auto;
-                padding: 100px 15px 60px;
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-3d-wrap {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1350px;
+            padding: 20px;
+            transition: transform 0.1s ease-out;
+        }
+
+        .hero-poster-card {
+            background: #111;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: heroFloat 4s ease-in-out infinite;
+        }
+
+        .hero-poster-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            display: block;
+        }
+
+        @keyframes heroFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
             }
         }
 
-        @media (max-width: 480px) {
+        /* Mobile Hero - Make it tight and focus on poster */
+        @media (max-width: 768px) {
             #home {
-                background-size: 100% auto;
-                background-position: top center;
-                min-height: 50vh;
+                min-height: auto;
                 height: auto;
-                padding: 90px 10px 40px;
+                padding-top: 100px;
+                padding-bottom: 30px;
+            }
+
+            .hero-3d-wrap {
+                padding: 10px;
+                max-width: 100%;
+            }
+
+            .hero-poster-card {
+                padding: 5px;
+                animation: none;
+                /* Disable float on mobile for stability */
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            }
+
+            .hero-glow {
+                display: none;
+            }
+        }
+
+        /* Mobile Hero Improvements */
+        @media (max-width: 576px) {
+            #home {
+                padding-top: 85px;
+                padding-bottom: 20px;
+            }
+
+            .hero-poster-card {
+                border-radius: 12px;
+                border: 1px solid rgba(255, 0, 0, 0.5);
+            }
+
+            .hero-poster-card img {
+                border-radius: 8px;
             }
         }
 
         /* ====== COMPREHENSIVE RESPONSIVE STYLES ====== */
-        
+
         /* Navbar mobile improvements */
         @media (max-width: 991px) {
             .navbar {
                 padding: 10px 0;
             }
-            
+
             .navbar-collapse {
                 background: rgba(230, 230, 230, 0.98);
                 padding: 15px;
                 margin-top: 10px;
                 border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
-            
+
             .navbar-nav {
                 margin-top: 10px;
             }
-            
+
             .nav-item {
                 margin: 5px 0;
             }
-            
+
             .nav-link {
                 padding: 10px 15px !important;
                 border-radius: 5px;
             }
-            
+
             .nav-link:hover {
                 background: rgba(255, 0, 0, 0.1);
             }
@@ -153,15 +222,15 @@
             #about .custom-card {
                 padding: 20px 15px;
             }
-            
+
             #about .custom-card i {
                 font-size: 2rem !important;
             }
-            
+
             #about .custom-card h5 {
                 font-size: 1rem;
             }
-            
+
             #about .custom-card p {
                 font-size: 0.8rem;
             }
@@ -179,25 +248,25 @@
                 margin-left: -5px;
                 margin-right: -5px;
             }
-            
-            #events .row > [class*="col-"] {
+
+            #events .row>[class*="col-"] {
                 padding-left: 5px;
                 padding-right: 5px;
             }
-            
+
             #events .custom-card {
                 padding: 15px;
             }
-            
+
             #events .custom-card h4 {
                 font-size: 1rem;
             }
-            
+
             #events .custom-card .m-chip {
                 font-size: 0.65rem;
                 padding: 5px;
             }
-            
+
             #events .custom-card .btn {
                 font-size: 0.75rem;
                 padding: 5px 10px;
@@ -216,7 +285,7 @@
                 height: 200px;
                 margin-bottom: 15px;
             }
-            
+
             #gallery .view-all-btn {
                 padding: 10px 25px;
                 font-size: 0.8rem;
@@ -228,7 +297,7 @@
             #authorities .authority-card-3d {
                 margin-bottom: 20px;
             }
-            
+
             #authorities .coord-circle {
                 width: 100px;
                 height: 100px;
@@ -240,15 +309,15 @@
                 width: 80px;
                 height: 80px;
             }
-            
+
             #authorities .custom-card {
                 padding: 15px;
             }
-            
+
             #authorities .custom-card h5 {
                 font-size: 0.9rem;
             }
-            
+
             #authorities .custom-card p {
                 font-size: 0.75rem;
             }
@@ -259,7 +328,7 @@
             footer {
                 padding: 50px 0 30px;
             }
-            
+
             footer .footer-contributor-card {
                 margin-bottom: 20px;
             }
@@ -269,20 +338,20 @@
             footer {
                 padding: 40px 0 20px;
             }
-            
+
             footer .footer-logo {
                 font-size: 2rem;
             }
-            
+
             footer .footer-dev-img {
                 width: 70px;
                 height: 70px;
             }
-            
+
             footer h5 {
                 font-size: 1rem;
             }
-            
+
             footer .social-link {
                 font-size: 1.2rem;
                 margin: 0 8px;
@@ -294,28 +363,28 @@
             .modal-dialog {
                 margin: 10px;
             }
-            
+
             .modal-content {
                 border-radius: 10px;
             }
-            
+
             .modal-header {
                 padding: 15px;
             }
-            
+
             .modal-title {
                 font-size: 1.2rem;
             }
-            
+
             .modal-body {
                 padding: 15px;
             }
-            
+
             .modal-footer {
                 padding: 10px 15px;
                 flex-direction: column;
             }
-            
+
             .modal-footer .btn {
                 width: 100%;
                 margin: 5px 0;
@@ -327,24 +396,24 @@
             #registrationModal .modal-body {
                 padding: 15px;
             }
-            
+
             #registrationModal .registration-card .card-body {
                 padding: 12px !important;
             }
-            
+
             #registrationModal .icon-circle {
                 width: 35px !important;
                 height: 35px !important;
             }
-            
+
             #registrationModal .icon-circle i {
                 font-size: 1rem !important;
             }
-            
+
             #registrationModal h6 {
                 font-size: 0.85rem;
             }
-            
+
             #registrationModal small {
                 font-size: 0.65rem !important;
             }
@@ -355,23 +424,23 @@
             #venueModal .venue-3d-card {
                 margin-bottom: 15px;
             }
-            
+
             #venueModal .venue-3d-card-inner {
                 padding: 20px 15px;
             }
-            
+
             #venueModal .venue-icon-3d {
                 font-size: 2rem;
             }
-            
+
             #venueModal .venue-title-3d {
                 font-size: 1rem;
             }
-            
+
             #venueModal .venue-address-3d {
                 font-size: 0.8rem;
             }
-            
+
             #venueModal .btn-direction-3d {
                 padding: 8px 15px;
                 font-size: 0.75rem;
@@ -384,20 +453,20 @@
                 width: 16px;
                 font-size: 0.9rem;
             }
-            
+
             #detailModal .rule-item {
                 font-size: 0.8rem;
             }
-            
+
             #detailModal .modal-member-img {
                 width: 60px;
                 height: 60px;
             }
-            
+
             #detailModal .member-name {
                 font-size: 0.7rem;
             }
-            
+
             #detailModal .brochure-btn {
                 padding: 8px 12px;
                 font-size: 0.7rem;
@@ -411,16 +480,16 @@
                 padding-left: 15px;
                 padding-right: 15px;
             }
-            
+
             .section-padding {
                 padding: 50px 0;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
                 margin-bottom: 30px;
             }
-            
+
             .section-title span::after {
                 width: 40px;
                 height: 2px;
@@ -434,8 +503,8 @@
                 margin-left: -7.5px;
                 margin-right: -7.5px;
             }
-            
-            .row > [class*="col-"] {
+
+            .row>[class*="col-"] {
                 padding-left: 7.5px;
                 padding-right: 7.5px;
             }
@@ -443,13 +512,14 @@
 
         /* Touch-friendly improvements */
         @media (hover: none) and (pointer: coarse) {
+
             .btn,
             .nav-link,
             .custom-card,
             .gallery-item {
                 touch-action: manipulation;
             }
-            
+
             .btn:active,
             .custom-card:active {
                 transform: scale(0.98);
@@ -956,172 +1026,172 @@
                 padding-top: 15px;
             }
 
-    .navbar-toggler {
-        padding: 5px 8px;
-    }
-
-    /* Hero Section */
-    #home {
-        height: calc(100vh - 70px);
-        margin-top: 70px;
-        padding: 80px 15px;
-        min-height: 100vh;
-    }
-
-    .hero-subtext {
-        font-size: 0.7rem;
-        letter-spacing: 2px;
-    }
+            .navbar-toggler {
+                padding: 5px 8px;
             }
 
-            .main-title {
-                font-size: clamp(2.5rem, 15vw, 4rem);
+            /* Hero Section */
+            #home {
+                height: calc(100vh - 70px);
+                margin-top: 70px;
+                padding: 80px 15px;
+                min-height: 100vh;
             }
 
-            /* Sections */
-            .section-padding {
-                padding: 60px 0;
-            }
-
-            .section-title {
-                font-size: clamp(2.2rem, 10vw, 3rem);
-                margin-bottom: 40px;
-            }
-
-            /* About Section */
-            .about .lead {
-                font-size: 1.1rem;
-                line-height: 1.6;
-            }
-
-            .custom-card {
-                padding: 25px 20px;
-            }
-
-            .custom-card h5 {
-                font-size: 1.1rem;
-            }
-
-            .custom-card .fs-1 {
-                font-size: 2.2rem !important;
-            }
-
-            .custom-card .small {
-                font-size: 0.8rem;
-            }
-
-            /* Events Section */
-            #eventGrid .custom-card {
-                margin-bottom: 20px;
-            }
-
-            .m-chip {
-                font-size: 0.8rem;
-                padding: 8px;
-            }
-
-            .m-chip b {
-                font-size: 0.75rem;
-            }
-
-            .bg-dark h6 {
-                font-size: 0.9rem;
-            }
-
-            .bg-dark .btn-sm {
+            .hero-subtext {
                 font-size: 0.7rem;
-                padding: 4px 8px;
+                letter-spacing: 2px;
             }
+        }
 
-            /* Gallery */
-            .gallery-img {
-                height: 180px;
-            }
+        .main-title {
+            font-size: clamp(2.5rem, 15vw, 4rem);
+        }
 
-            /* Authorities Section */
-            .coord-circle {
-                width: 100px;
-                height: 100px;
-                font-size: 1.5rem;
-                margin-bottom: 20px;
-            }
+        /* Sections */
+        .section-padding {
+            padding: 60px 0;
+        }
 
-            .coord-circle+h5 {
-                font-size: 1.1rem;
-            }
+        .section-title {
+            font-size: clamp(2.2rem, 10vw, 3rem);
+            margin-bottom: 40px;
+        }
 
-            .coord-circle+h5+.small {
-                font-size: 0.8rem;
-            }
+        /* About Section */
+        .about .lead {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
 
-            /* Modal */
-            .modal-dialog {
-                margin: 15px;
-            }
+        .custom-card {
+            padding: 25px 20px;
+        }
 
-            .modal-content {
-                margin: 0;
-            }
+        .custom-card h5 {
+            font-size: 1.1rem;
+        }
 
-            .modal-body {
-                padding: 20px;
-                max-height: 80vh;
-                overflow-y: auto;
-            }
+        .custom-card .fs-1 {
+            font-size: 2.2rem !important;
+        }
 
-            .modal-title {
-                font-size: 1.6rem;
-            }
+        .custom-card .small {
+            font-size: 0.8rem;
+        }
 
-            .detail-icon {
-                width: 20px;
-                font-size: 1.1rem;
-            }
+        /* Events Section */
+        #eventGrid .custom-card {
+            margin-bottom: 20px;
+        }
 
-            .rule-item {
-                font-size: 0.9rem;
-            }
+        .m-chip {
+            font-size: 0.8rem;
+            padding: 8px;
+        }
 
-            .modal-member-img {
-                width: 100px;
-                height: 100px;
-            }
+        .m-chip b {
+            font-size: 0.75rem;
+        }
 
-            .member-name {
-                font-size: 0.85rem;
-            }
+        .bg-dark h6 {
+            font-size: 0.9rem;
+        }
 
-            .core-team-label {
-                font-size: 0.8rem;
-                margin-bottom: 20px;
-            }
+        .bg-dark .btn-sm {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+        }
 
-            .modal-footer {
-                padding: 10px;
-            }
+        /* Gallery */
+        .gallery-img {
+            height: 180px;
+        }
 
-            /* Footer */
-            footer {
-                padding: 50px 0 20px;
-            }
+        /* Authorities Section */
+        .coord-circle {
+            width: 100px;
+            height: 100px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
 
-            footer h2 {
-                font-size: 1.8rem;
-            }
+        .coord-circle+h5 {
+            font-size: 1.1rem;
+        }
 
-            .dev-img {
-                width: 80px;
-                height: 80px;
-            }
+        .coord-circle+h5+.small {
+            font-size: 0.8rem;
+        }
 
-            .dev-name {
-                font-size: 1.1rem;
-            }
+        /* Modal */
+        .modal-dialog {
+            margin: 15px;
+        }
 
-            footer .small {
-                font-size: 0.85rem;
-            }
-        
+        .modal-content {
+            margin: 0;
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+        }
+
+        .detail-icon {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .rule-item {
+            font-size: 0.9rem;
+        }
+
+        .modal-member-img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .member-name {
+            font-size: 0.85rem;
+        }
+
+        .core-team-label {
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            padding: 10px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0 20px;
+        }
+
+        footer h2 {
+            font-size: 1.8rem;
+        }
+
+        .dev-img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .dev-name {
+            font-size: 1.1rem;
+        }
+
+        footer .small {
+            font-size: 0.85rem;
+        }
+
 
         /* Small Devices (phones 576px - 767px) */
         @media (min-width: 576px) and (max-width: 767.98px) {
@@ -1426,7 +1496,7 @@
                 min-width: 165px;
             }
         }
-        
+
 
         #eventDetailsModal .custom-card {
             display: flex;
@@ -1892,17 +1962,13 @@
     </nav>
 
     <section id="home">
-        <div class="container" data-aos="zoom-out">
-            <!-- <p class="hero-subtext">NDIM - GGSIP UNIVERSITY PRESENTS</p>
-            <h1 class="main-title">MANTHAN-26</h1>
-            <p class="h4 text-light fw-light">Annual Cultural & Technical Fest</p> --> 
-            <!-- <div class="d-flex justify-content-center gap-3 my-5">
-                <div class="timer-box"><span id="days">30</span><label>Days</label></div>
-                <div class="timer-box"><span id="hours">17</span><label>Hours</label></div>
-                <div class="timer-box"><span id="mins">00</span><label>Mins</label></div>
-                <div class="timer-box"><span id="secs">31</span><label>Secs</label></div>
-            </div> -->
-            <!-- <a href="#register" class="btn btn-danger btn-lg px-5 py-3 fw-bold rounded-1 mt-3">REGISTER NOW</a> -->
+        <div class="hero-glow"></div>
+        <div class="container-fluid d-flex justify-content-center px-3 px-md-5">
+            <div class="hero-3d-wrap" id="hero3dWrap">
+                <div class="hero-poster-card" data-aos="zoom-out" data-aos-duration="1200">
+                    <img src="poster.png" alt="MANTHAN-26 Poster">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1966,7 +2032,7 @@
                             <div class="overlay">
                                 <div class="overlay-content">
                                     <!-- <span>CONCERT NIGHT</span> -->
-                                    <i class="fa fa-expand"></i> 
+                                    <i class="fa fa-expand"></i>
                                 </div>
                             </div>
                         </div>
@@ -2191,7 +2257,8 @@
                         <div class="col-6">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fa fa-clock detail-icon me-3"></i>
-                                <div><small class="text-secondary d-block">DATE</small><span class="small"> 16 - 18 March
+                                <div><small class="text-secondary d-block">DATE</small><span class="small"> 16 - 18
+                                        March
                                         2026</span></div>
                             </div>
                             <div class="d-flex align-items-center mb-3">
@@ -2372,8 +2439,9 @@
                                         <i class="fa fa-university"></i>
                                     </div>
                                     <h4 class="venue-title-3d">NDIM ( NEW DELHI INSTITUTE OF MANAGEMENT ) </h4>
-                                    <p class="venue-address-3d" style="color: #666 !important;">Behind Batra Hospital,<br>Tughlakabad Institutional
-                                        Area, Vayusenabad, New Delhi, 110062 <br><br> Date : 16 - 17 March 2026  </p>
+                                    <p class="venue-address-3d" style="color: #666 !important;">Behind Batra
+                                        Hospital,<br>Tughlakabad Institutional
+                                        Area, Vayusenabad, New Delhi, 110062 <br><br> Date : 16 - 17 March 2026 </p>
                                     <a href="https://www.google.com/maps/place/NDIM+-+New+Delhi+Institute+of+Management/@28.5136029,77.243265,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce175a84f0d23:0x12f178d21ded2f5e!8m2!3d28.5136029!4d77.243265!16s%2Fm%2F0k0pkbv?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
                                         target="_blank" class="btn btn-direction-3d">
                                         <i class="fa fa-location-arrow me-2"></i>GET DIRECTIONS
@@ -2389,8 +2457,10 @@
                                         <i class="fa fa-graduation-cap"></i>
                                     </div>
                                     <h4 class="venue-title-3d">SHRI SATHYA SAI AUDITORIUM</h4>
-                                    <p class="venue-address-3d" style="color: #666 !important;">Auditorium ,Bhishma Pitamah Marg,
-                                        Pragati Vihar,<br>Lodhi Road, New Delhi, 110003  <br><br> Date : 18 March 2026</p>
+                                    <p class="venue-address-3d" style="color: #666 !important;">Auditorium ,Bhishma
+                                        Pitamah Marg,
+                                        Pragati Vihar,<br>Lodhi Road, New Delhi, 110003 <br><br> Date : 18 March 2026
+                                    </p>
                                     <a href="https://www.google.com/maps/dir//Sri+Sathya+Sai+Auditorium,+Gate+No:+3,+AUDITORIUM,+Lodhi+Rd,+Pragati+Vihar,+New+Delhi,+Delhi+110003/@28.5868032,77.2079616,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x390ce2ed938e936f:0x2a6de094a30c5a5f!2m2!1d77.2305437!2d28.5876136?entry=ttu&g_ep=EgoyMDI2MDIxNy4wIKXMDSoASAFQAw%3D%3D"
                                         target="_blank" class="btn btn-direction-3d">
                                         <i class="fa fa-location-arrow me-2"></i>GET DIRECTIONS
@@ -3693,6 +3763,22 @@
         backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // ============================================
+        // Hero 3D Tilt Effect
+        // ============================================
+        const heroWrap = document.getElementById('hero3dWrap');
+        if (heroWrap && window.innerWidth > 991) {
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+                heroWrap.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            document.addEventListener('mouseleave', () => {
+                heroWrap.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+            });
+        }
+
+        // ============================================
         // Initialize AOS
         // ============================================
         AOS.init({
@@ -3705,4 +3791,3 @@
 
 
 </html>
-
