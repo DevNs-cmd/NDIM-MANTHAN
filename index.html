@@ -110,18 +110,24 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 1200px;
-            padding: 20px;
+            max-width: 1600px;
+            /* Massive cinematic scale */
+            padding: 5px;
             transition: transform 0.1s ease-out;
         }
 
         .hero-poster-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 0, 0, 0.5);
             border-radius: 20px;
-            padding: 10px;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
-            animation: heroFloat 4s ease-in-out infinite;
+            padding: 3px;
+            /* Edge-to-edge content */
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(255, 0, 0, 0.15);
+            animation: heroFloat 8s ease-in-out infinite;
+            position: relative;
         }
 
         .hero-poster-card img {
@@ -129,18 +135,21 @@
             height: auto;
             border-radius: 12px;
             display: block;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes heroFloat {
 
             0%,
             100% {
-                transform: translateY(0);
+                transform: translateY(0) rotate(0.2deg);
             }
 
             50% {
-                transform: translateY(-15px);
+                transform: translateY(-8px) rotate(-0.2deg);
             }
+
+            /* Very subtle vertical movement */
         }
 
         /* Mobile Hero - Tight & Focused */
@@ -152,9 +161,11 @@
                 background: #000;
             }
 
-            #home::before,
-            .hero-glow {
-                display: none !important;
+            #home::before {
+                background: url('portrait-poster.png') center/cover no-repeat !important;
+                display: block !important;
+                /* Re-enable for portrait impact */
+                filter: blur(15px) brightness(0.2);
             }
 
             .hero-3d-wrap {
@@ -294,15 +305,16 @@
         /* Gallery Section responsive */
         @media (max-width: 991px) {
             #gallery .gallery-item {
-                height: 280px;
+                height: 350px;
+                /* Even bigger on tablets */
             }
         }
 
         @media (max-width: 576px) {
             #gallery .gallery-item {
-                height: 280px;
-                /* Increased image size on mobile */
-                margin-bottom: 20px;
+                height: 320px;
+                /* Massive impact on phones */
+                margin-bottom: 25px;
             }
 
             #gallery .view-all-btn {
@@ -1976,7 +1988,10 @@
         <div class="container-fluid d-flex justify-content-center p-0">
             <div class="hero-3d-wrap" id="hero3dWrap">
                 <div class="hero-poster-card">
-                    <img src="poster.png" alt="MANTHAN-26 Poster">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="portrait-poster.png">
+                        <img src="poster.png" alt="MANTHAN-26 Poster">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -3773,14 +3788,14 @@
         backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // ============================================
-        // Hero 3D Tilt Effect
+        // Hero 3D Tilt Effect - Refined for Readability
         // ============================================
         const heroWrap = document.getElementById('hero3dWrap');
         if (heroWrap && window.innerWidth > 991) {
             document.addEventListener('mousemove', (e) => {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
-                heroWrap.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 80; // More subtle
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 80; // More subtle
+                heroWrap.style.transform = `perspective(1500px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
             });
 
             document.addEventListener('mouseleave', () => {
