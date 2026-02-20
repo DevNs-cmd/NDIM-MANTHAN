@@ -72,17 +72,26 @@
             color: var(--primary-red) !important;
         }
 
-        /* --- Hero Section Redesign --- */
+        /* --- Hero Section Revamped --- */
         #home {
-            min-height: 100vh;
             margin-top: 0;
             padding-top: 80px;
+            /* Space for fixed navbar */
+            padding-bottom: 0;
             background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
+        }
+
+        /* Beautiful Dynamic Background to remove black bars */
+        #home::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('poster.png') center/cover no-repeat;
+            filter: blur(40px) brightness(0.4);
+            transform: scale(1.1);
+            z-index: 0;
         }
 
         .hero-glow {
@@ -90,9 +99,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.2) 0%, transparent 70%);
             pointer-events: none;
             z-index: 1;
         }
@@ -101,24 +110,24 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 1350px;
+            max-width: 1200px;
             padding: 20px;
             transition: transform 0.1s ease-out;
         }
 
         .hero-poster-card {
-            background: #111;
-            border: 1px solid rgba(255, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 0, 0, 0.6);
             border-radius: 20px;
             padding: 10px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
             animation: heroFloat 4s ease-in-out infinite;
         }
 
         .hero-poster-card img {
             width: 100%;
             height: auto;
-            border-radius: 15px;
+            border-radius: 12px;
             display: block;
         }
 
@@ -134,46 +143,56 @@
             }
         }
 
-        /* Mobile Hero - Make it tight and focus on poster */
+        /* Mobile Hero - Tight & Focused */
         @media (max-width: 768px) {
             #home {
-                min-height: auto;
-                height: auto;
-                padding-top: 100px;
-                padding-bottom: 30px;
+                padding-top: 70px;
+                /* Tighter to navbar */
+                padding-bottom: 0 !important;
+                background: #000;
+            }
+
+            #home::before,
+            .hero-glow {
+                display: none !important;
             }
 
             .hero-3d-wrap {
-                padding: 10px;
+                padding: 0 !important;
                 max-width: 100%;
+                width: 100% !important;
             }
 
             .hero-poster-card {
-                padding: 5px;
-                animation: none;
-                /* Disable float on mobile for stability */
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            }
-
-            .hero-glow {
-                display: none;
-            }
-        }
-
-        /* Mobile Hero Improvements */
-        @media (max-width: 576px) {
-            #home {
-                padding-top: 85px;
-                padding-bottom: 20px;
-            }
-
-            .hero-poster-card {
-                border-radius: 12px;
-                border: 1px solid rgba(255, 0, 0, 0.5);
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                background: none;
             }
 
             .hero-poster-card img {
+                border-radius: 0;
+                width: 100%;
+                display: block;
+            }
+
+            /* REMOVE THE GAP: Pull the about section up */
+            #about {
+                padding-top: 0px !important;
+                margin-top: -1px;
+                /* Ensure no pixel gap */
+            }
+        }
+
+        /* Extra Mobile Polish */
+        @media (max-width: 576px) {
+            .hero-poster-card {
+                padding: 2px;
                 border-radius: 8px;
+            }
+
+            .hero-poster-card img {
+                border-radius: 6px;
             }
         }
 
@@ -1030,14 +1049,7 @@
                 padding: 5px 8px;
             }
 
-            /* Hero Section */
-            #home {
-                height: calc(100vh - 70px);
-                margin-top: 70px;
-                padding: 80px 15px;
-                min-height: 100vh;
-            }
-
+            /* Redundant Hero Section rules removed to fix gap */
             .hero-subtext {
                 font-size: 0.7rem;
                 letter-spacing: 2px;
@@ -1252,13 +1264,8 @@
 
         /* Landscape orientation adjustments */
         @media (max-height: 500px) and (orientation: landscape) {
-            #home {
-                min-height: 120vh;
-                padding: 120px 20px 80px;
-            }
-
             .main-title {
-                font-size: clamp(2rem, 10vw, 4rem);
+                font-size: clamp(2.5rem, 10vw, 4rem);
             }
         }
 
@@ -1963,9 +1970,9 @@
 
     <section id="home">
         <div class="hero-glow"></div>
-        <div class="container-fluid d-flex justify-content-center px-3 px-md-5">
+        <div class="container-fluid d-flex justify-content-center p-0">
             <div class="hero-3d-wrap" id="hero3dWrap">
-                <div class="hero-poster-card" data-aos="zoom-out" data-aos-duration="1200">
+                <div class="hero-poster-card">
                     <img src="poster.png" alt="MANTHAN-26 Poster">
                 </div>
             </div>
