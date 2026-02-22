@@ -566,6 +566,15 @@
             height: auto;
         }
 
+        /* Performance Optimization: Hint the browser about transformations */
+        .custom-card,
+        .gallery-item,
+        .venue-3d-card-inner,
+        .footer-contributor-card,
+        #hero3dWrap {
+            will-change: transform, box-shadow;
+        }
+
         /* Smooth scrolling for all devices */
         html {
             scroll-behavior: smooth;
@@ -656,8 +665,8 @@
 
         .custom-card:hover {
             border-color: var(--primary-red);
-            transform: translateY(-15px) rotateX(5deg) rotateY(2deg);
-            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.15);
+            transform: translateY(-8px) rotateX(2deg) rotateY(1deg);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.1);
         }
 
         .custom-card i {
@@ -2300,7 +2309,11 @@
                             <img src="aryan kumar.png" alt="Aryan Kumar">
                         </div>
                         <h5>Aryan Kumar</h5>
-                        <p class="text-danger small fw-bold"><b> (97179 68168)</b></p>
+                        <p class="text-danger small fw-bold mb-1"><b> (97179 68168)</b></p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="#" target="_blank" class="text-secondary hover-red"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
@@ -2309,7 +2322,11 @@
                             <img src="rashi garg.png" alt="Rashi Garg">
                         </div>
                         <h5>Rashi Garg</h5>
-                        <p class="text-danger small fw-bold"><b> (98716 22833)</b></p>
+                        <p class="text-danger small fw-bold mb-1"><b> (98716 22833)</b></p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="#" target="_blank" class="text-secondary hover-red"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
                 <!-- 3. Sushant -->
@@ -2319,7 +2336,11 @@
                             <img src="Sushant .png" alt="Sushant">
                         </div>
                         <h5>Sushant</h5>
-                        <p class="text-danger small fw-bold"> <b> (88102 66760)</b></p>
+                        <p class="text-danger small fw-bold mb-1"> <b> (88102 66760)</b></p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="#" target="_blank" class="text-secondary hover-red"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2344,8 +2365,10 @@
                         <img src="premnew.png" class="footer-dev-img mx-auto d-block" alt="Prem Aggarwal">
                         <h5 class="fw-bold mb-1 text-dark">Prem Aggarwal</h5>
                         <p class="small text-secondary mb-3">BCA Student</p>
-                        <div class="d-flex justify-content-center mt-3">
+                        <div class="d-flex justify-content-center mt-3 gap-2">
                             <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/prem-aggarwal-8920307438" target="_blank"
+                                class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2357,7 +2380,8 @@
                         <h5 class="fw-bold mb-1 text-dark">Dev Nath Suman</h5>
                         <p class="small text-secondary mb-3">BCA Student</p>
                         <div class="d-flex justify-content-center mt-3">
-                            <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/dev-n-suman-3616a6377" target="_blank"
+                                class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2621,26 +2645,44 @@
     <script>
         AOS.init();
 
-        // --- Dynamic 3D Tilt Effect for All Cards ---
+        // --- Optimized Dynamic 3D Tilt Effect ---
+        let cards = [];
+        let rAF_cards = null;
+
+        // Update card list whenever DOM changes or on load
+        const updateCardList = () => {
+            cards = Array.from(document.querySelectorAll('.custom-card, .venue-3d-card-inner, .footer-contributor-card'));
+        };
+
+        // Initial update and periodic update for dynamic content
+        updateCardList();
+        setInterval(updateCardList, 2000);
+
         document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.custom-card, .venue-3d-card-inner, .footer-contributor-card');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+            if (rAF_cards) cancelAnimationFrame(rAF_cards);
 
-                if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (centerY - y) / 15;
-                    const rotateY = (x - centerX) / 15;
+            rAF_cards = requestAnimationFrame(() => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
 
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) translateZ(30px)`;
-                    card.style.boxShadow = `0 30px 60px rgba(255, 0, 0, 0.2)`;
-                } else {
-                    card.style.transform = '';
-                    card.style.boxShadow = '';
-                }
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = mouseX - rect.left;
+                    const y = mouseY - rect.top;
+
+                    if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = (centerY - y) / 40;
+                        const rotateY = (x - centerX) / 40;
+
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) translateZ(10px)`;
+                        card.style.boxShadow = `0 15px 30px rgba(255, 0, 0, 0.1)`;
+                    } else if (card.style.transform) {
+                        card.style.transform = '';
+                        card.style.boxShadow = '';
+                    }
+                });
             });
         });
 
@@ -2672,7 +2714,7 @@
                     "<h6>Registration Fees</h6>",
                     "₹50 (Team of 2) <br>₹100 (Team of 3)<br>₹150 (Team of 4) <br>(Click Event Details for more information.)"],
 
-                socials: { instagram: "https://www.instagram.com/cybernautsndim/" },
+                socials: { instagram: "https://www.instagram.com/cybernautsndim/", linkedin: "https://www.linkedin.com/in/cybernauts-ndim-539985350/" },
 
                 events: [
                     {
@@ -2755,7 +2797,7 @@
                     "Judging Criteria: Creativity, Strategy, Feasibility, Market, Presentation, Q&A, Visuals.",
                     "Registration Fee: Team of 2 - ₹70 | Team of 4 - ₹100."
                 ],
-                socials: { instagram: "https://www.instagram.com/prominent_ndim?igsh=MWdnM3hoY2F5bXJ0Mg==" },
+                socials: { instagram: "https://www.instagram.com/prominent_ndim?igsh=MWdnM3hoY2F5bXJ0Mg==", linkedin: "https://www.linkedin.com/company/prominent-the-marketing-club/posts/?feedView=all" },
                 events: [
                     {
                         name: "Brand Pitch Competition",
@@ -2813,7 +2855,7 @@
                     "The organizers' decision will be final and binding.",
                     "Registration fees: ₹50 single person, ₹100 for more than 2 members."
                 ],
-                socials: { instagram: "https://instagram.com/catalyst_ndim" },
+                socials: { instagram: "https://instagram.com/catalyst_ndim", linkedin: "https://linkedin.com/company/catalyst-ndim" },
                 events: [
                     {
                         name: "HR Mystery Hunt - Tag Team Challenge",
@@ -2863,7 +2905,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
-                socials: { instagram: "https://www.instagram.com/tabiir_ndim/" },
+                socials: { instagram: "https://www.instagram.com/tabiir_ndim/", linkedin: "https://linkedin.com" },
                 events: [
                     {
                         name: "TAMASHA - THE NUKKAD NATAK COMPETITION",
@@ -2941,7 +2983,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
-                socials: { instagram: "https://www.instagram.com/ruhaniyat_ndim/" },
+                socials: { instagram: "https://www.instagram.com/ruhaniyat_ndim/", linkedin: "https://linkedin.com" },
                 events: [
                     {
                         name: "FLOW KA WAR (Rap Battle)",
@@ -3033,7 +3075,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["All materials must be self-brought unless specified.", "Respect the workspace.", "Original work only."],
-                socials: { instagram: "https://instagram.com/kalakriti_ndim" },
+                socials: { instagram: "https://instagram.com/kalakriti_ndim", linkedin: "https://linkedin.com/company/kalakriti-ndim" },
                 events: [
                     {
                         name: "PAINT-ON-LEAF ART (LEAF PAINTING)",
@@ -3118,7 +3160,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Entries must be self-composed and original.", "Individual participation is mandatory for all events unless specified.", "Strict adherence to time limits (4+1 or 3+1 minutes).", "Registration Fee: Rs. 100 per event."],
-                socials: { instagram: "https://instagram.com/sandarbh_ndim" },
+                socials: { instagram: "https://instagram.com/sandarbh_ndim", linkedin: "https://linkedin.com/company/sandarbh-ndim" },
                 events: [
                     {
                         name: "ECHOES OF ELEGANCE (English Poetry)",
@@ -3210,7 +3252,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Business professional attire recommended.", "Pitch deck must be submitted in PPT/PDF.", "Judging based on scalability and innovation."],
-                socials: { instagram: "https://instagram.com/ecell_ndim" },
+                socials: { instagram: "https://instagram.com/ecell_ndim", linkedin: "https://linkedin.com/company/ecell-ndim" },
                 events: [
                     {
                         name: "STARTUP SHARK-TANK: PITCH IT!",
@@ -3260,7 +3302,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Roles assigned are strictly confidential", "No external communication during gameplay", "Moderator's decision is final and binding", "No physical contact or abusive language permitted"],
-                socials: { instagram: "https://instagram.com/bullsnbear_ndim" },
+                socials: { instagram: "https://instagram.com/bullsnbear_ndim", linkedin: "https://linkedin.com/company/bullsnbear-ndim" },
                 events: [
                     {
                         name: "TRAITORS - Power, Greed & Capital",
@@ -3311,7 +3353,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Participants must bring their music in MP3 format on a pen drive.", "Adherence to time limits is strictly required.", "Judgment will be based on technique, choreography, expression, and energy."],
-                socials: { instagram: "https://www.instagram.com/meraki_ndim?igsh=MmMzOHNsc2JmbmNi" },
+                socials: { instagram: "https://www.instagram.com/meraki_ndim?igsh=MmMzOHNsc2JmbmNi", linkedin: "https://linkedin.com/company/meraki-ndim" },
                 events: [
                     {
                         name: "LAYANTARA (Solo Classical Dance)",
@@ -3410,7 +3452,7 @@
                 internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
-                socials: { instagram: "https://www.instagram.com/ikhtiyar.ndim/" },
+                socials: { instagram: "https://www.instagram.com/ikhtiyar.ndim/", linkedin: "https://linkedin.com/company/quizclub-ndim" },
                 events: [
                     {
                         name: "NAZARIYAN-PHOTOGRAPHY",
@@ -3463,7 +3505,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["There will be 3 Rounds of Battle Royale", "<h6>Scoring System:</h6> 1 = 10<br>2 = 8<br>3 = 6<br>4 = 4<br>5 = 2<br>6-8 = 1<br>9 and below = 0 <br>", "<h6> Kill Points: </h6>1 point per kill", "<h6>Winning Criteria:</h6>Total points from 3 matches determine the winner.<br>In case of a tie, the team with more kills wins. <br> <br> Team Size: Each team must have 4 players.", "<h6>Conduct:</h6>Cheating, exploits, or toxic behaviour will result in disqualification.<br>Disconnections: Matches continue despite player disconnections.", "<h6>Organizer Notes:</h6> By participating, teams agree to follow the rules. <br> Organizers may modify rules if necessary and will notify participants.", "<h6>Entry fee ₹400 </h6>"],
-                socials: { instagram: "https://instagram.com/sports_ndim" },
+                socials: { instagram: "https://instagram.com/sports_ndim", linkedin: "https://linkedin.com/company/sports-ndim" },
                 events: [
                     {
                         name: "BATTLEGROUND DELHI SERIES",
@@ -4009,20 +4051,32 @@
         backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // ============================================
-        // Hero 3D Tilt Effect - Refined for Readability
+        // Optimized Hero 3D Tilt Effect
         // ============================================
         const heroWrap = document.getElementById('hero3dWrap');
+        let rAF_hero = null;
+
         if (heroWrap && window.innerWidth > 991) {
             document.addEventListener('mousemove', (e) => {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 80; // More subtle
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 80; // More subtle
-                heroWrap.style.transform = `perspective(1500px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                if (rAF_hero) cancelAnimationFrame(rAF_hero);
+
+                rAF_hero = requestAnimationFrame(() => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 80;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 80;
+                    heroWrap.style.transform = `perspective(1500px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
             });
 
             document.addEventListener('mouseleave', () => {
+                if (rAF_hero) cancelAnimationFrame(rAF_hero);
                 heroWrap.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
             });
         }
+
+        // Final AOS Update after dynamic content
+        window.addEventListener('load', () => {
+            AOS.refresh();
+        });
 
         // ============================================
         // Initialize AOS
