@@ -617,6 +617,7 @@
         /* --- Section Styling --- */
         .section-padding {
             padding: 100px 0;
+            overflow: visible;
         }
 
         .section-title {
@@ -625,6 +626,16 @@
             margin-bottom: 50px;
             color: var(--primary-red);
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+
+        .section-title span {
+            display: inline-block;
+            animation: floating 3s ease-in-out infinite;
         }
 
         /* --- Custom Cards --- */
@@ -633,15 +644,96 @@
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 30px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             height: 100%;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .custom-card:hover {
             border-color: var(--primary-red);
-            transform: translateY(-8px);
+            transform: translateY(-15px) rotateX(5deg) rotateY(2deg);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.15);
+        }
+
+        .custom-card i {
+            transition: transform 0.5s;
+            transform: translateZ(20px);
+        }
+
+        .custom-card:hover i {
+            transform: translateZ(40px) scale(1.2) rotate(10deg);
+        }
+
+        .custom-card h4,
+        .custom-card h5 {
+            transform: translateZ(15px);
+        }
+
+        /* 3D Instagram Animation */
+        .hover-red {
+            display: inline-block;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .hover-red i.fa-instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            transition: all 0.5s;
+        }
+
+        .hover-red:hover {
+            transform: perspective(500px) translateZ(50px) rotateY(20deg) rotateX(10deg);
+        }
+
+        .hover-red:hover i.fa-instagram {
+            filter: drop-shadow(0 15px 15px rgba(214, 36, 159, 0.6));
+            transform: scale(1.3);
+        }
+
+        /* Float Animation */
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float-3d {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        /* Glassmorphism Section Backgrounds */
+        .section-padding {
+            position: relative;
+            z-index: 1;
+        }
+
+        #events::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, transparent 100%);
+            z-index: -1;
         }
 
         .m-chip {
@@ -707,37 +799,37 @@
         }
 
         .gallery-item:hover {
-            transform: rotateY(10deg) rotateX(6deg) translateY(-12px);
-            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 0, 0, 0.2);
+            transform: rotateY(20deg) rotateX(15deg) translateY(-20px) translateZ(50px);
+            box-shadow: 0 50px 80px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 0, 0, 0.5);
         }
 
         .gallery-item:hover::after {
             opacity: 1;
-            transform: translateX(10%) translateY(10%);
+            transform: translateX(20%) translateY(20%);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.12) translateZ(10px);
-            opacity: 0.6;
+            transform: scale(1.2) translateZ(30px);
+            opacity: 0.5;
         }
 
         .gallery-item .overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(255, 0, 0, 0.4) 0%, transparent 60%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 25px;
             opacity: 0;
-            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            transform: translateZ(20px);
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateZ(40px);
             z-index: 3;
         }
 
         .gallery-item .overlay-content {
-            transform: translateZ(50px);
+            transform: translateZ(80px);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -746,7 +838,7 @@
 
         .gallery-item:hover .overlay {
             opacity: 1;
-            transform: translateZ(40px);
+            transform: translateZ(60px);
         }
 
         .gallery-item .overlay span {
@@ -1387,13 +1479,14 @@
         }
 
         .hover-red {
-            transition: 0.3s;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .hover-red:hover {
             color: var(--primary-red) !important;
-            transform: translateY(-3px);
+            transform: translateY(-8px) scale(1.2) rotate(5deg);
             display: inline-block;
+            filter: drop-shadow(0 10px 10px rgba(255, 0, 0, 0.3));
         }
 
         /* --- Animated Brochure Button Styles --- */
@@ -1716,26 +1809,47 @@
         }
 
         .social-icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #eee;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: #fff;
             color: #222 !important;
-            /* Force dark color */
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0 5px;
-            transition: all 0.3s;
-            font-size: 1.2rem;
+            margin: 0 8px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.4rem;
             text-decoration: none;
-            border: 1px solid #ddd;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+
+        .social-icon-btn i {
+            transition: transform 0.5s;
         }
 
         .social-icon-btn:hover {
             background: var(--primary-red);
             color: #fff !important;
-            transform: translateY(-3px);
+            transform: translateY(-10px) rotateY(20deg) scale(1.1);
+            box-shadow: 0 15px 25px rgba(255, 0, 0, 0.3);
+            border-color: var(--primary-red);
+        }
+
+        .social-icon-btn:hover i {
+            transform: translateZ(30px) scale(1.2);
+        }
+
+        .social-icon-btn .fa-instagram {
+            color: #d6249f;
+            /* Base color for transition */
+        }
+
+        .social-icon-btn:hover .fa-instagram {
+            color: #fff !important;
         }
 
         .footer-link {
@@ -2232,7 +2346,6 @@
                         <p class="small text-secondary mb-3">BCA Student</p>
                         <div class="d-flex justify-content-center mt-3">
                             <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-instagram"></i></a>
-                            <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2244,8 +2357,7 @@
                         <h5 class="fw-bold mb-1 text-dark">Dev Nath Suman</h5>
                         <p class="small text-secondary mb-3">BCA Student</p>
                         <div class="d-flex justify-content-center mt-3">
-                            <a href="https://www.linkedin.com/in/dev-n-suman-3616a6377" target="_blank"
-                                class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" target="_blank" class="social-icon-btn"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -2509,9 +2621,9 @@
     <script>
         AOS.init();
 
-        // --- Dynamic 3D Tilt Effect for Venue Cards ---
+        // --- Dynamic 3D Tilt Effect for All Cards ---
         document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.venue-3d-card-inner');
+            const cards = document.querySelectorAll('.custom-card, .venue-3d-card-inner, .footer-contributor-card');
             cards.forEach(card => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -2520,12 +2632,14 @@
                 if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-                    const rotateX = (centerY - y) / 10;
-                    const rotateY = (x - centerX) / 10;
+                    const rotateX = (centerY - y) / 15;
+                    const rotateY = (x - centerX) / 15;
 
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) translateZ(20px)`;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) translateZ(30px)`;
+                    card.style.boxShadow = `0 30px 60px rgba(255, 0, 0, 0.2)`;
                 } else {
                     card.style.transform = '';
+                    card.style.boxShadow = '';
                 }
             });
         });
@@ -2558,7 +2672,7 @@
                     "<h6>Registration Fees</h6>",
                     "₹50 (Team of 2) <br>₹100 (Team of 3)<br>₹150 (Team of 4) <br>(Click Event Details for more information.)"],
 
-                socials: { instagram: "https://www.instagram.com/cybernautsndim/", linkedin: "https://www.linkedin.com/in/cybernauts-ndim-539985350/" },
+                socials: { instagram: "https://www.instagram.com/cybernautsndim/" },
 
                 events: [
                     {
@@ -2641,7 +2755,7 @@
                     "Judging Criteria: Creativity, Strategy, Feasibility, Market, Presentation, Q&A, Visuals.",
                     "Registration Fee: Team of 2 - ₹70 | Team of 4 - ₹100."
                 ],
-                socials: { instagram: "https://www.instagram.com/prominent_ndim?igsh=MWdnM3hoY2F5bXJ0Mg==", linkedin: "https://www.linkedin.com/company/prominent-the-marketing-club/posts/?feedView=all" },
+                socials: { instagram: "https://www.instagram.com/prominent_ndim?igsh=MWdnM3hoY2F5bXJ0Mg==" },
                 events: [
                     {
                         name: "Brand Pitch Competition",
@@ -2699,7 +2813,7 @@
                     "The organizers' decision will be final and binding.",
                     "Registration fees: ₹50 single person, ₹100 for more than 2 members."
                 ],
-                socials: { instagram: "https://instagram.com/catalyst_ndim", linkedin: "https://linkedin.com/company/catalyst-ndim" },
+                socials: { instagram: "https://instagram.com/catalyst_ndim" },
                 events: [
                     {
                         name: "HR Mystery Hunt - Tag Team Challenge",
@@ -2749,7 +2863,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
-                socials: { instagram: "https://www.instagram.com/tabiir_ndim/", linkedin: "https://linkedin.com" },
+                socials: { instagram: "https://www.instagram.com/tabiir_ndim/" },
                 events: [
                     {
                         name: "TAMASHA - THE NUKKAD NATAK COMPETITION",
@@ -2827,7 +2941,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
-                socials: { instagram: "https://www.instagram.com/ruhaniyat_ndim/", linkedin: "https://linkedin.com" },
+                socials: { instagram: "https://www.instagram.com/ruhaniyat_ndim/" },
                 events: [
                     {
                         name: "FLOW KA WAR (Rap Battle)",
@@ -2919,7 +3033,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["All materials must be self-brought unless specified.", "Respect the workspace.", "Original work only."],
-                socials: { instagram: "https://instagram.com/kalakriti_ndim", linkedin: "https://linkedin.com/company/kalakriti-ndim" },
+                socials: { instagram: "https://instagram.com/kalakriti_ndim" },
                 events: [
                     {
                         name: "PAINT-ON-LEAF ART (LEAF PAINTING)",
@@ -3004,7 +3118,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Entries must be self-composed and original.", "Individual participation is mandatory for all events unless specified.", "Strict adherence to time limits (4+1 or 3+1 minutes).", "Registration Fee: Rs. 100 per event."],
-                socials: { instagram: "https://instagram.com/sandarbh_ndim", linkedin: "https://linkedin.com/company/sandarbh-ndim" },
+                socials: { instagram: "https://instagram.com/sandarbh_ndim" },
                 events: [
                     {
                         name: "ECHOES OF ELEGANCE (English Poetry)",
@@ -3096,7 +3210,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Business professional attire recommended.", "Pitch deck must be submitted in PPT/PDF.", "Judging based on scalability and innovation."],
-                socials: { instagram: "https://instagram.com/ecell_ndim", linkedin: "https://linkedin.com/company/ecell-ndim" },
+                socials: { instagram: "https://instagram.com/ecell_ndim" },
                 events: [
                     {
                         name: "STARTUP SHARK-TANK: PITCH IT!",
@@ -3146,7 +3260,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Roles assigned are strictly confidential", "No external communication during gameplay", "Moderator's decision is final and binding", "No physical contact or abusive language permitted"],
-                socials: { instagram: "https://instagram.com/bullsnbear_ndim", linkedin: "https://linkedin.com/company/bullsnbear-ndim" },
+                socials: { instagram: "https://instagram.com/bullsnbear_ndim" },
                 events: [
                     {
                         name: "TRAITORS - Power, Greed & Capital",
@@ -3197,7 +3311,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["Participants must bring their music in MP3 format on a pen drive.", "Adherence to time limits is strictly required.", "Judgment will be based on technique, choreography, expression, and energy."],
-                socials: { instagram: "https://www.instagram.com/meraki_ndim?igsh=MmMzOHNsc2JmbmNi", linkedin: "https://linkedin.com/company/meraki-ndim" },
+                socials: { instagram: "https://www.instagram.com/meraki_ndim?igsh=MmMzOHNsc2JmbmNi" },
                 events: [
                     {
                         name: "LAYANTARA (Solo Classical Dance)",
@@ -3296,7 +3410,7 @@
                 internalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: [],
-                socials: { instagram: "https://www.instagram.com/ikhtiyar.ndim/", linkedin: "https://linkedin.com/company/quizclub-ndim" },
+                socials: { instagram: "https://www.instagram.com/ikhtiyar.ndim/" },
                 events: [
                     {
                         name: "NAZARIYAN-PHOTOGRAPHY",
@@ -3349,7 +3463,7 @@
                 internalRegisterLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBr44f5oL0GTQ4JYy6aYiao48qOt_Ng73vgORlSahK48AdQw/viewform",
                 externalRegisterLink: "https://forms.gle/YzN8KTmLPDt8MEJR6",
                 rules: ["There will be 3 Rounds of Battle Royale", "<h6>Scoring System:</h6> 1 = 10<br>2 = 8<br>3 = 6<br>4 = 4<br>5 = 2<br>6-8 = 1<br>9 and below = 0 <br>", "<h6> Kill Points: </h6>1 point per kill", "<h6>Winning Criteria:</h6>Total points from 3 matches determine the winner.<br>In case of a tie, the team with more kills wins. <br> <br> Team Size: Each team must have 4 players.", "<h6>Conduct:</h6>Cheating, exploits, or toxic behaviour will result in disqualification.<br>Disconnections: Matches continue despite player disconnections.", "<h6>Organizer Notes:</h6> By participating, teams agree to follow the rules. <br> Organizers may modify rules if necessary and will notify participants.", "<h6>Entry fee ₹400 </h6>"],
-                socials: { instagram: "https://instagram.com/sports_ndim", linkedin: "https://linkedin.com/company/sports-ndim" },
+                socials: { instagram: "https://instagram.com/sports_ndim" },
                 events: [
                     {
                         name: "BATTLEGROUND DELHI SERIES",
