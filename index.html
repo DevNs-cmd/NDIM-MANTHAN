@@ -208,7 +208,7 @@
 
         /* ====== COMPREHENSIVE RESPONSIVE STYLES ====== */
 
-/* Navbar mobile improvements */
+        /* Navbar mobile improvements */
         @media (max-width: 991px) {
             .navbar {
                 padding: 10px 0;
@@ -1976,8 +1976,8 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link border border-danger rounded px-2"
-                            href="#register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link border border-danger rounded px-2" href="javascript:void(0)"
+                            onclick="openRegistrationModal(0)">Register</a></li>
                 </ul>
             </div>
         </div>
@@ -3552,7 +3552,6 @@
             const socialHtml = club.socials ? `
                 <div class="mt-3 pt-3 border-top border-secondary d-flex gap-3 justify-content-center">
                     <a href="${club.socials.instagram}" target="_blank" class="text-secondary hover-red"><i class="fab fa-instagram"></i></a>
-                    <a href="${club.socials.linkedin}" target="_blank" class="text-secondary hover-red"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             ` : '';
 
@@ -3755,13 +3754,17 @@
             });
 
             // Set REGISTER button to open registration modal
-            const registerBtn = document.querySelector('#detailModal .modal-footer .btn-danger');
+            const registerBtn = document.getElementById('registerBtn');
             if (registerBtn) {
-                registerBtn.onclick = function () {
+                registerBtn.onclick = function (e) {
+                    e.preventDefault();
                     // Close detail modal first
-                    bootstrap.Modal.getInstance(document.getElementById('detailModal')).hide();
-                    // Open registration modal
-                    openRegistrationModal(index);
+                    const detailModal = bootstrap.Modal.getInstance(document.getElementById('detailModal'));
+                    if (detailModal) detailModal.hide();
+                    // Open registration modal with a small delay
+                    setTimeout(() => {
+                        openRegistrationModal(index);
+                    }, 400);
                 };
             }
 
@@ -3783,10 +3786,12 @@
             const detailModal = bootstrap.Modal.getInstance(detailModalEl);
             if (detailModal) detailModal.hide();
 
-            // Open registration modal with current index
-            if (currentClubIndex !== null) {
-                openRegistrationModal(currentClubIndex);
-            }
+            // Open registration modal with current index after a small delay
+            setTimeout(() => {
+                if (currentClubIndex !== null) {
+                    openRegistrationModal(currentClubIndex);
+                }
+            }, 400);
         }
 
         function openRegistrationModal(index) {
@@ -3805,7 +3810,12 @@
             }
 
             // Show the registration modal
-            new bootstrap.Modal(document.getElementById('registrationModal')).show();
+            const regModalEl = document.getElementById('registrationModal');
+            let regModal = bootstrap.Modal.getInstance(regModalEl);
+            if (!regModal) {
+                regModal = new bootstrap.Modal(regModalEl);
+            }
+            regModal.show();
         }
 
         // ============================================
