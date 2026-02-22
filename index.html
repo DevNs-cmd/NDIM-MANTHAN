@@ -2284,33 +2284,96 @@
         </div>
     </section>
 
-    <!-- Lightbox Modal -->
-    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true" style="background: rgba(0,0,0,0.95);">
-        <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-lg-down">
-            <div class="modal-content bg-transparent border-0 shadow-none">
-                <div class="modal-body p-0 position-relative">
-                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Lightbox Overlay (Custom, no white bg) -->
+    <div id="lightboxOverlay" style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.96);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    ">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" style="
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.85;
+        ">&times;</button>
 
-                    <div class="lightbox-img-container text-center">
-                        <img id="lightboxImg" src="" class="img-fluid rounded-3 shadow-lg" alt="Gallery Image"
-                            style="max-height: 85vh;">
-                    </div>
-
-                    <!-- Navigation Controls -->
-                    <button class="lightbox-nav-btn prev" onclick="changeLightboxImg(-1)">
-                        <i class="fa fa-chevron-left"></i>
-                    </button>
-                    <button class="lightbox-nav-btn next" onclick="changeLightboxImg(1)">
-                        <i class="fa fa-chevron-right"></i>
-                    </button>
-
-                    <div class="lightbox-caption text-white text-center mt-3">
-                        <span id="lightboxCounter" class="badge bg-danger rounded-pill px-3 py-2">Image 1 of 20</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Image -->
+        <div
+            style="width: 100%; max-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 0 60px;">
+            <img id="lightboxImg" src="" alt="Gallery Image" style="
+                max-width: 100%;
+                max-height: 80vh;
+                object-fit: contain;
+                border-radius: 8px;
+                display: block;
+                transition: opacity 0.3s ease;
+            ">
         </div>
+
+        <!-- Counter -->
+        <div style="margin-top: 14px; text-align: center;">
+            <span id="lightboxCounter" style="
+                background: #ff0000;
+                color: white;
+                padding: 4px 16px;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 600;
+            ">Image 1 of 18</span>
+        </div>
+
+        <!-- Prev Button -->
+        <button onclick="changeLightboxImg(-1)" style="
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        "><i class="fa fa-chevron-left"></i></button>
+
+        <!-- Next Button -->
+        <button onclick="changeLightboxImg(1)" style="
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        "><i class="fa fa-chevron-right"></i></button>
     </div>
 
     <section id="authorities" class="section-padding bg-black">
@@ -4141,50 +4204,57 @@
             AOS.refresh();
         });
 
-        // Lightbox Functions
-        const lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+        // Lightbox Functions (Custom Overlay - no Bootstrap modal)
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCounter = document.getElementById('lightboxCounter');
 
         function openLightbox(index) {
             currentGalleryIndex = index;
             updateLightbox();
-            lightboxModal.show();
+            lightboxOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // prevent background scroll
         }
+
+        function closeLightbox() {
+            lightboxOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Close when clicking outside image
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) closeLightbox();
+        });
 
         function updateLightbox() {
             lightboxImg.src = galleryImages[currentGalleryIndex];
             lightboxCounter.innerText = `Image ${currentGalleryIndex + 1} of ${galleryImages.length}`;
-
-            // Smooth scale/fade entry
-            lightboxImg.style.transform = 'scale(0.95)';
             lightboxImg.style.opacity = '0';
-            setTimeout(() => {
-                lightboxImg.style.transition = 'all 0.4s ease-out';
-                lightboxImg.style.transform = 'scale(1)';
-                lightboxImg.style.opacity = '1';
-            }, 50);
+            setTimeout(() => { lightboxImg.style.opacity = '1'; }, 50);
         }
 
         function changeLightboxImg(step) {
             currentGalleryIndex += step;
             if (currentGalleryIndex >= galleryImages.length) currentGalleryIndex = 0;
             if (currentGalleryIndex < 0) currentGalleryIndex = galleryImages.length - 1;
-
             lightboxImg.style.opacity = '0';
-            setTimeout(() => {
-                updateLightbox();
-                lightboxImg.style.opacity = '1';
-            }, 200);
+            setTimeout(() => { updateLightbox(); }, 180);
         }
 
-        // Keyboard navigation for lightbox
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            const lightboxEl = document.getElementById('lightboxModal');
-            if (!lightboxEl.classList.contains('show')) return;
+            if (lightboxOverlay.style.display !== 'flex') return;
             if (e.key === 'ArrowRight') changeLightboxImg(1);
             if (e.key === 'ArrowLeft') changeLightboxImg(-1);
-            if (e.key === 'Escape') bootstrap.Modal.getInstance(lightboxEl)?.hide();
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        lightboxOverlay.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        lightboxOverlay.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) changeLightboxImg(diff > 0 ? 1 : -1);
         });
 
         // Initialize Gallery
