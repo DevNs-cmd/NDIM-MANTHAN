@@ -305,21 +305,24 @@
         /* Gallery Section responsive */
         @media (max-width: 991px) {
             #gallery .gallery-item {
-                height: 350px;
-                /* Even bigger on tablets */
+                height: 220px;
             }
         }
 
         @media (max-width: 576px) {
             #gallery .gallery-item {
-                height: 320px;
-                /* Massive impact on phones */
-                margin-bottom: 25px;
+                height: 170px;
+                margin-bottom: 0;
             }
 
-            #gallery .view-all-btn {
-                padding: 10px 25px;
-                font-size: 0.8rem;
+            #gallery .gallery-item-wrap {
+                margin-bottom: 12px;
+            }
+
+            #gallery .view-all-btn,
+            .view-all-btn {
+                padding: 10px 24px;
+                font-size: 0.82rem;
             }
         }
 
@@ -772,15 +775,14 @@
 
         .gallery-item {
             position: relative;
-            border-radius: 20px;
+            border-radius: 12px;
             overflow: hidden;
-            height: 320px;
+            height: 260px;
             cursor: pointer;
-            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-            transform-style: preserve-3d;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             background: #000;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #e0e0e0;
         }
 
         /* Sophisticated Glint */
@@ -808,19 +810,18 @@
         }
 
         .gallery-item:hover {
-            transform: rotateY(20deg) rotateX(15deg) translateY(-20px) translateZ(50px);
-            box-shadow: 0 50px 80px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 0, 0, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-red);
         }
 
         .gallery-item:hover::after {
             opacity: 1;
-            transform: translateX(20%) translateY(20%);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.2) translateZ(30px);
-            opacity: 0.5;
+            transform: scale(1.08);
+            opacity: 0.8;
         }
 
         .gallery-item .overlay {
@@ -848,6 +849,105 @@
         .gallery-item:hover .overlay {
             opacity: 1;
             transform: translateZ(60px);
+            background: linear-gradient(to top, rgba(255, 0, 0, 0.7) 0%, transparent 80%);
+        }
+
+        .gallery-item .overlay-content i {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: pulseFade 2s infinite;
+        }
+
+        @keyframes pulseFade {
+
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        /* --- Lightbox Premium Styling --- */
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-nav-btn.prev {
+            left: -80px;
+        }
+
+        .lightbox-nav-btn.next {
+            right: -80px;
+        }
+
+        @media (max-width: 1200px) {
+            .lightbox-nav-btn.prev {
+                left: 10px;
+            }
+
+            .lightbox-nav-btn.next {
+                right: 10px;
+            }
+
+            .lightbox-nav-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+
+        #lightboxImg {
+            border: 5px solid white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .view-all-btn {
+            background: transparent;
+            border: 2px solid var(--primary-red);
+            color: var(--primary-red);
+            padding: 12px 35px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-all-btn:hover {
+            background: var(--primary-red);
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+            transform: translateY(-3px);
         }
 
         .gallery-item .overlay span {
@@ -2171,93 +2271,47 @@
             <h2 class="section-title">Photo <span>Gallery</span></h2>
             <p class="text-secondary mb-5">Capturing the vibrant energy and moments of MANTHAN</p>
 
-            <div class="row g-4">
-                <!-- Item 1 -->
-                <div class="col-lg-4 col-sm-6" data-aos="fade-up">
-                    <div class="gallery-item-wrap">
-                        <div class="gallery-item">
-                            <img src="fest1.png" alt="Fest Moment">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <!-- <span>CONCERT NIGHT</span> -->
-                                    <i class="fa fa-expand"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="gallery-item-wrap">
-                        <div class="gallery-item">
-                            <img src="fest2.png" alt="DJ Night">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <!-- <span>DJ VIBES</span> -->
-                                    <i class="fa fa-expand"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="gallery-item-wrap">
-                        <div class="gallery-item">
-                            <img src="fest4.png" alt="Crowd">
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <!-- <span>CROWD ENERGY</span> -->
-                                    <i class="fa fa-expand"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hidden More Photos -->
-            <div id="gallery-more" class="gallery-more-container">
-                <div class="row g-4 mt-4">
-                    <!-- Item 4 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="gallery-item-wrap">
-                            <div class="gallery-item">
-                                <img src="fest5.png" alt="Stage">
-                                <div class="overlay">
-                                    <div class="overlay-content">
-                                        <!-- <span>MAIN STAGE</span> -->
-                                        <i class="fa fa-expand"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="gallery-item-wrap">
-                            <div class="gallery-item">
-                                <img src="fest6.png" alt="Lighting">
-                                <div class="overlay">
-                                    <div class="overlay-content">
-                                        <!-- <span>NEON LIGHTS</span> -->
-                                        <i class="fa fa-expand"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row g-4" id="galleryGrid">
+                <!-- Dynamic Content via JS -->
             </div>
 
             <div class="text-center mt-5">
-                <button class="view-all-btn" id="toggleGallery">
-                    <span id="btnText">VIEW ALL PHOTOS</span>
+                <button class="view-all-btn" id="loadMoreGallery">
+                    <span id="galleryBtnText">VIEW ALL PHOTOS</span>
                     <i class="fa fa-chevron-down"></i>
                 </button>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true" style="background: rgba(0,0,0,0.95);">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-lg-down">
+            <div class="modal-content bg-transparent border-0 shadow-none">
+                <div class="modal-body p-0 position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="lightbox-img-container text-center">
+                        <img id="lightboxImg" src="" class="img-fluid rounded-3 shadow-lg" alt="Gallery Image"
+                            style="max-height: 85vh;">
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <button class="lightbox-nav-btn prev" onclick="changeLightboxImg(-1)">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button class="lightbox-nav-btn next" onclick="changeLightboxImg(1)">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+
+                    <div class="lightbox-caption text-white text-center mt-3">
+                        <span id="lightboxCounter" class="badge bg-danger rounded-pill px-3 py-2">Image 1 of 20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="authorities" class="section-padding bg-black">
         <div class="container text-center">
@@ -2411,7 +2465,8 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body px-4 py-3">
-                    <p class="text-secondary small mb-4">A prestigious inter-college competition where eloquence meets
+                    <p class="text-secondary small mb-4">A prestigious inter-college competition where eloquence
+                        meets
                         intellect. Teams of two argue for and against contemporary topics.</p>
 
                     <div class="row g-4 mb-4">
@@ -2470,7 +2525,8 @@
                             </button>
                         </div>
 
-                        <h6 class="core-team-label text-uppercase" id="modCoreTitle">CORE TEAM - LITERARY SOCIETY</h6>
+                        <h6 class="core-team-label text-uppercase" id="modCoreTitle">CORE TEAM - LITERARY SOCIETY
+                        </h6>
                         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-3 text-center" id="modTeamGrid">
                         </div>
                     </div>
@@ -2586,11 +2642,13 @@
                 </div>
                 <div class="modal-body p-4 p-md-5">
                     <div class="text-center mb-5">
-                        <span class="text-danger fw-bold text-uppercase small letter-spacing-2">Event Locations</span>
+                        <span class="text-danger fw-bold text-uppercase small letter-spacing-2">Event
+                            Locations</span>
                         <h2 class="fw-bold text-dark mt-2"
                             style="font-family: 'Oswald', sans-serif; font-size: 2.5rem;">MANTHAN <span
                                 class="text-danger">VENUES</span></h2>
-                        <div class="mx-auto bg-danger mt-2" style="height: 4px; width: 60px; border-radius: 2px;"></div>
+                        <div class="mx-auto bg-danger mt-2" style="height: 4px; width: 60px; border-radius: 2px;">
+                        </div>
                     </div>
 
                     <div class="row g-4">
@@ -2603,7 +2661,8 @@
                                     </div>
                                     <h4 class="venue-title-3d">NDIM ( NEW DELHI INSTITUTE OF MANAGEMENT ) </h4>
                                     <p class="venue-address-3d" style="color: #666 !important;">61, Tughlakabad
-                                        Institutional Area,<br>Vayusenabad, New Delhi, Delhi 110062 <br><br> <b>Date :
+                                        Institutional Area,<br>Vayusenabad, New Delhi, Delhi 110062 <br><br> <b>Date
+                                            :
                                             16 -
                                             17 March 2026</b></p>
                                     <a href="https://www.google.com/maps/place/NDIM+Ggsipu+-+Best+BBA+college+in+Delhi/@28.5141125,77.2402936,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce107547de6e1:0xa8b3a05440673a20!8m2!3d28.5141125!4d77.2428739!16s%2Fg%2F11s7nwtkh2?entry=ttu"
@@ -2621,8 +2680,10 @@
                                         <i class="fa fa-graduation-cap"></i>
                                     </div>
                                     <h4 class="venue-title-3d">SHRI SATHYA SAI AUDITORIUM</h4>
-                                    <p class="venue-address-3d" style="color: #666 !important;">Bhishma Pitamah Marg,
-                                        Pragati Vihar,<br>New Delhi, Delhi 110003 <br><br><b> Date : 18 March 2026</b>
+                                    <p class="venue-address-3d" style="color: #666 !important;">Bhishma Pitamah
+                                        Marg,
+                                        Pragati Vihar,<br>New Delhi, Delhi 110003 <br><br><b> Date : 18 March
+                                            2026</b>
                                     </p>
                                     <a href="https://maps.app.goo.gl/bf1ceccST2xbkGrNA?g_st=aw" target="_blank"
                                         class="btn btn-direction-3d">
@@ -3989,25 +4050,145 @@
             }
         }, 1000);
         // ============================================
-        // Gallery Toggle
+        // Dynamic Gallery & Lightbox Logic
         // ============================================
-        document.getElementById('toggleGallery').addEventListener('click', function () {
-            const morePhotos = document.getElementById('gallery-more');
-            const btnText = document.getElementById('btnText');
-            const button = this;
+        // ADD YOUR PHOTOS HERE (More than 20 supported)
+        const galleryImages = [
+            'fest1.png',
+            'fest2.png',
+            'fest4.png',
+            'fest5.png',
+            'fest6.png',
+            'fest1.png', // Duplicate placeholders
+            'fest2.png',
+            'fest4.png',
+            'fest5.png',
+            'fest6.png',
+            'fest1.png',
+            'fest2.png',
+            'fest4.png',
+            'fest5.png',
+            'fest6.png',
+            'fest1.png',
+            'fest2.png',
+            'fest4.png'
+            // Keep adding image paths here...
+        ];
 
-            if (morePhotos.style.display === 'none' || morePhotos.style.display === '') {
-                morePhotos.style.display = 'block';
-                btnText.innerText = 'SHOW LESS';
-                button.classList.add('active');
+        let currentGalleryIndex = 0;
+        let visibleImages = 6;
+        const galleryGrid = document.getElementById('galleryGrid');
+        const loadMoreBtn = document.getElementById('loadMoreGallery');
+        const galleryBtnText = document.getElementById('galleryBtnText');
+
+        let isExpanded = false;
+
+        function renderGallery() {
+            galleryGrid.innerHTML = '';
+            const imagesToShow = galleryImages.slice(0, visibleImages);
+
+            imagesToShow.forEach((img, idx) => {
+                const col = document.createElement('div');
+                // Responsive: 2 columns on mobile, 3 on tablet+
+                col.className = 'col-6 col-sm-6 col-md-4 col-lg-4';
+                col.setAttribute('data-aos', 'zoom-in');
+                col.setAttribute('data-aos-delay', (idx % 3) * 80);
+
+                col.innerHTML = `
+                    <div class="gallery-item-wrap">
+                        <div class="gallery-item" onclick="openLightbox(${idx})">
+                            <img src="${img}" alt="Fest Moment ${idx + 1}" loading="lazy">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <i class="fa fa-search-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                galleryGrid.appendChild(col);
+            });
+
+            // Update button state
+            if (galleryImages.length <= 6) {
+                loadMoreBtn.style.display = 'none';
+            } else if (isExpanded) {
+                loadMoreBtn.style.display = 'inline-flex';
+                galleryBtnText.innerText = 'SHOW LESS';
+                loadMoreBtn.querySelector('i').className = 'fa fa-chevron-up ms-2';
             } else {
-                morePhotos.style.display = 'none';
-                btnText.innerText = 'VIEW ALL PHOTOS';
-                button.classList.remove('active');
-                // Optional: Scroll back to gallery start
-                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                loadMoreBtn.style.display = 'inline-flex';
+                galleryBtnText.innerText = 'VIEW ALL PHOTOS';
+                loadMoreBtn.querySelector('i').className = 'fa fa-chevron-down ms-2';
             }
+        }
+
+        loadMoreBtn.addEventListener('click', () => {
+            if (!isExpanded) {
+                // Expand
+                visibleImages = galleryImages.length;
+                isExpanded = true;
+            } else {
+                // Collapse back to 6
+                visibleImages = 6;
+                isExpanded = false;
+                // Smooth scroll back up to gallery section
+                setTimeout(() => {
+                    document.getElementById('gallery').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+            renderGallery();
+            AOS.refresh();
         });
+
+        // Lightbox Functions
+        const lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        function openLightbox(index) {
+            currentGalleryIndex = index;
+            updateLightbox();
+            lightboxModal.show();
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = galleryImages[currentGalleryIndex];
+            lightboxCounter.innerText = `Image ${currentGalleryIndex + 1} of ${galleryImages.length}`;
+
+            // Smooth scale/fade entry
+            lightboxImg.style.transform = 'scale(0.95)';
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.style.transition = 'all 0.4s ease-out';
+                lightboxImg.style.transform = 'scale(1)';
+                lightboxImg.style.opacity = '1';
+            }, 50);
+        }
+
+        function changeLightboxImg(step) {
+            currentGalleryIndex += step;
+            if (currentGalleryIndex >= galleryImages.length) currentGalleryIndex = 0;
+            if (currentGalleryIndex < 0) currentGalleryIndex = galleryImages.length - 1;
+
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                updateLightbox();
+                lightboxImg.style.opacity = '1';
+            }, 200);
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            const lightboxEl = document.getElementById('lightboxModal');
+            if (!lightboxEl.classList.contains('show')) return;
+            if (e.key === 'ArrowRight') changeLightboxImg(1);
+            if (e.key === 'ArrowLeft') changeLightboxImg(-1);
+            if (e.key === 'Escape') bootstrap.Modal.getInstance(lightboxEl)?.hide();
+        });
+
+        // Initialize Gallery
+        renderGallery();
 
         // ============================================
         // Mobile Menu Auto-Close
